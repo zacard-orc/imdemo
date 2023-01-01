@@ -1,0 +1,24 @@
+.label-color {
+  width: 180px;
+  height: 60px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: Arial, sans-serif;
+  padding: 6px;
+  box-sizing: border-box;
+  color: #777575;
+  border-radius: 4px;
+  display: inline-block;
+  margin-right: 8px;
+  transition: all 0.3s ease-out;
+  &:hover {
+    color: #b77867;
+    cursor: pointer;
+    box-shadow: 0 0 6px 3px #f5e5e5;
+  }
+
+  @media screen and (max-width: 800px) {
+    width: 100px;
+    height: 30px;
+  }
+}

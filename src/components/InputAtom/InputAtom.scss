@@ -1,0 +1,43 @@
+@import "src/util";
+
+.input-atom {
+  height: 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-left: 10px;
+  > input {
+    outline: none;
+    border: none;
+    width: 100%;
+    height: 30px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding-left: 10px;
+    color: #696666;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  > input::-webkit-input-placeholder{
+    color: #8c8a8a;
+    font-size:14px;
+    font-weight: 300;
+  }
+}
+
+.close-tips {
+  left: 160px;
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  z-index: 10;
+  @extend .gm-ct01;
+  &:hover {
+    cursor: pointer;
+  }
+  > img {
+    width:80%;
+
+  }
+}

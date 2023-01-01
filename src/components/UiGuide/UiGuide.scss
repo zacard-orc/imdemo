@@ -1,0 +1,16 @@
+@import "src/util";
+
+.ui-guide {
+  background-color: #fff;
+  height: 100%;
+  padding: 10px;
+  overflow-y: auto;
+  @extend .gm-panel-radius;
+
+  .row {
+    margin-bottom: 10px;
+  }
+  .unit {
+
+  }
+}

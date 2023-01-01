@@ -1,0 +1,33 @@
+@import "/src/util";
+.nav-left {
+  width: 100%;
+  height: 100%;
+
+  > .result-list {
+    padding-left: 10px;
+    > .empty {
+      font-family: Lato-Black,sans-serif;
+      color: #696666;
+      font-size: 14px;
+      padding: 2px 0;
+    }
+    > .topic {
+      margin-bottom: 2px;
+      font-family: Lato-Black,sans-serif;
+      color: #696666;
+      font-size: 14px;
+      padding: 2px 0;
+      font-weight: 500;
+      transition: padding-left 0.5s ease-out;
+      user-select: none;
+      &:hover {
+        background-color: #E7A4B2;
+        cursor: pointer;
+        padding-left: 4px;
+      }
+      &:active {
+        background-color: #FEDBB5;
+      }
+    }
+  }
+}
