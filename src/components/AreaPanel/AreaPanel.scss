@@ -10,50 +10,5 @@
   padding: 4px;
   //height: calc(100vh - 50px);
 
-  display: grid;
-  grid-template-columns: repeat(3, 33.3%);
 
-  > div {
-    box-sizing: border-box;
-    padding: 0 8px;
-
-    > h3 {
-      color: #7B9CA5;
-      margin: 4px 0;
-    }
-
-    > .codeblock {
-      height: 120px;
-      background-color: #f3f3f3;
-      border-radius: 8px;
-      font-family: Arial, sans-serif;
-      color: #514e4e;
-      box-sizing: border-box;
-      padding: 4px;
-      overflow-y: auto;
-    }
-  }
-
-  > .v2-farm {
-    overflow-x: auto;
-
-    div > pre {
-      background-color: #1f3030 !important;
-      max-height: calc(100vh - 280px);
-    }
-  }
-
-  > .v3-sfc-farm {
-    div > pre {
-      background-color: #39362a !important;
-      max-height: calc(100vh - 280px);
-    }
-  }
-
-  > .v3-tsx-farm {
-    div > pre {
-      background-color: #3c293c !important;
-      max-height: calc(100vh - 280px);
-    }
-  }
 }

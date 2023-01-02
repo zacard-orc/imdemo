@@ -28,6 +28,7 @@
     "vite-plugin-md": "^0.20.4",
     "vue": "^3.2.22",
     "vue-highlight.js": "^3.1.0",
+    "vue-i18n": "^9.2.2",
     "vue-router": "4",
     "vuex": "^4.0.2"
   },

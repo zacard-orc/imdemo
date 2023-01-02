@@ -4,8 +4,7 @@ import * as VueRouter from 'vue-router'
 https://router.vuejs.org/zh/guide/#html
  */
 const routes = [
-  { path: '/diff/:topic', component: () => import('@/components/AreaPanel/AreaPanel') },
-  { path: '/ts/:topic', component: () => import('@/components/TsPanel/TsPanel') },
+  { path: '/:branch/:topic', component: () => import('@/components/AreaPanel/AreaPanel') },
   { path: '/', component: () => import('@/components/AboutUs/AboutUs') },
   { path: '/:pathMatch(.*)*', name: 'PageNo404', component: () => import('@/components/404/404') },
 ]

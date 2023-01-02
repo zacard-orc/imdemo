@@ -2,6 +2,7 @@
 .nav-left {
   width: 100%;
   height: 100%;
+  overflow-y: scroll;
 
   > .result-list {
     padding-left: 10px;
@@ -11,13 +12,30 @@
       font-size: 14px;
       padding: 2px 0;
     }
-    > .topic {
+
+    .topic-lv1 {
+      > .head {
+        margin: 3px 0;
+        color: #882db7;
+        font-size: 18px;
+        font-weight: 600;
+        user-select: none;
+        &:hover {
+          cursor: pointer;
+        }
+
+      }
+      > .body {
+        transition: height 0.3s ease-out;
+        overflow-y: hidden;
+      }
+    }
+
+    .topic-lv2 {
       margin-bottom: 2px;
-      font-family: Lato-Black,sans-serif;
       color: #696666;
-      font-size: 14px;
+      font-size: 13px;
       padding: 2px 0;
-      font-weight: 500;
       transition: padding-left 0.5s ease-out;
       user-select: none;
       &:hover {
