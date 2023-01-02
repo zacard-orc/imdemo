@@ -28,6 +28,8 @@ declare module '*.md' {
   // When "Mode.HTML" is requested
   const html: string
 
+  // When "Mode.React" is requested. VFC could take a generic like React.VFC<{ MyComponent: TypeOfMyComponent }>
+
   // When "Mode.Vue" is requested
   import { ComponentOptions, Component } from 'vue'
   const VueComponent: ComponentOptions

@@ -1,8 +1,7 @@
 import './AreaPanel.scss'
 
-import { defineComponent, onMounted, reactive, ref, watch } from 'vue'
+import { defineComponent, onMounted, ref, watch } from 'vue'
 
-import { K_CATA } from '@/constant/z'
 import useRouteParam from '@/hooks/useRouteParam'
 
 export default defineComponent({
@@ -10,32 +9,29 @@ export default defineComponent({
   components: {},
   setup(props, ctx) {
     const countRef = ref(0)
-    const cata = reactive(K_CATA)
-    const dym = ref(new Map<string, any>())
-    const sel = ref('')
+    const vhtml = ref('')
 
     onMounted(() => {
       console.log(props)
       console.log(ctx)
     })
 
-    const { topic, query } = useRouteParam(() => (countRef.value += 1))
+    const { branch, topic, query } = useRouteParam(() => (countRef.value += 1))
 
     watch(
       () => topic,
-      async (n, o) => {
-        console.log(query.value)
-        // sel.value = _t
-        // for (const el of cata) {
-        //   const f = `${_t}_${el}`
-        //   const file = `../../mds/${f}.md`
-        //   try {
-        //     const { html } = await import(file)
-        //     dym.value.set(f, html)
-        //   } catch (e) {
-        //     console.error(e)
-        //   }
-        // }
+      async () => {
+        console.log('topic')
+        // @ts-ignore
+        const { name_meta } = query.value
+        const file = `../../mds/${branch.value}/${name_meta}.md`
+        try {
+          const { html } = await import(file)
+          console.log(html)
+          vhtml.value = html
+        } catch (e) {
+          console.error(e)
+        }
       },
       {
         deep: true,
@@ -43,10 +39,11 @@ export default defineComponent({
       }
     )
 
-    const headUp = (v: string) => {
-      return v.charAt(0).toUpperCase() + v.slice(1)
-    }
-
-    return () => <div className="area-panel">123</div>
+    return () => (
+      //  @ts-ignore
+      <div className="area-panel">
+        <div v-html={vhtml.value} class="markdown-body" />
+      </div>
+    )
   },
 })

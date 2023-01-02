@@ -25,7 +25,7 @@ export default defineComponent({
     const topics = reactive<IMenu[]>(K_ENTRY)
     const word = ref('')
     const cps = reactive(
-      topics.reduce((prev, el) => {
+      topics.reduce((prev: Record<string, boolean>, el) => {
         prev[el.name_meta] = true //true-放开，false-折叠
         return prev
       }, {})
@@ -67,6 +67,7 @@ export default defineComponent({
     const onClickTopic = (v: IMenu) => {
       router.push({
         path: `/web/${v.name_meta}`,
+        // @ts-ignore
         query: v,
       })
     }

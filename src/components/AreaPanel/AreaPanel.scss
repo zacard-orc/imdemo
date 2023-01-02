@@ -7,8 +7,20 @@
   @extend .gm-panel-radius;
 
   background-color: #fff;
-  padding: 4px;
-  //height: calc(100vh - 50px);
+  padding: 0 10px;
+  box-sizing: border-box;
 
-
+  > .markdown-body {
+    h1,h2,h3,h4{
+      font-family: Lato-Bold,sans-serif;
+      color: #5b5654;
+      margin: 4px 0;
+    }
+    p {
+      color: #7B9CA5;
+      margin: 0;
+      font-weight: 500;
+      font-family: Lato-Medium,sans-serif;
+    }
+  }
 }
