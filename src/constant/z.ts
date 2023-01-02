@@ -4,22 +4,26 @@ export const K_ENTRY: IMenu[] = [
   {
     level: 1,
     name_en: 'Web',
+    name_zh: 'Web',
     name_meta: 'Web',
     children: [
       { level: 2, name_zh: 'Css位置', name_en: 'css position', name_meta: 'css_pos' },
       { level: 2, name_zh: '居中', name_en: 'center', name_meta: 'css_center' },
       { level: 2, name_zh: '长宽一半', name_en: 'padding half', name_meta: 'css_padpct' },
+      { level: 2, name_zh: '正则', name_en: 'regex', name_meta: 'basic_regex' },
     ],
   },
   {
     level: 1,
     name_en: 'Vue',
+    name_zh: 'Vue',
     name_meta: 'Vue',
     children: [{ level: 2, name_zh: 'vue3 tsx', name_en: 'vue3 tsx', name_meta: 'css_padpct' }],
   },
   {
     level: 1,
     name_en: 'React',
+    name_zh: 'React',
     name_meta: 'React',
     children: [
       { level: 2, name_zh: 'useMemo使用', name_en: 'usememo', name_meta: 'react_usememo' },

@@ -10,7 +10,9 @@
 1313
 
 # 11
-![avatar](/mds_sucai/web/sample.png)
+![avatar](mds_sucai/web/sample.png)
+
+asf[:smile] asdf [:chat] zxb [:axe] zzsdfs
 
 ```javascript
 let aa = 1123

@@ -4,8 +4,6 @@ import { defineComponent, onMounted, ref, watch } from 'vue'
 
 import useRouteParam from '@/hooks/useRouteParam'
 
-import zz from './sample.png'
-
 export default defineComponent({
   name: 'AreaPanel',
   components: {},
@@ -29,7 +27,17 @@ export default defineComponent({
         const file = `../../mds/${branch.value}/${name_meta}.md`
         try {
           const { html } = await import(file)
-          vhtml.value = html
+
+          const pattern = /\[:\w+\]/gi
+
+          const h2 = html.replaceAll(pattern, function (match: string) {
+            const emid = match.slice(2, -1)
+
+            return `<span><img src="/emoji/${emid}.svg" class="emj" alt=${emid}/></span>`
+          })
+
+          console.log(h2)
+          vhtml.value = h2
         } catch (e) {
           console.error(e)
         }
