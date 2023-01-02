@@ -19,7 +19,7 @@
     p {
       color: #7B9CA5;
       margin: 0;
-      font-weight: 500;
+      font-weight: 400;
       font-family: Lato-Medium,sans-serif;
       font-size: 18px;
       line-height: 22px;
@@ -31,6 +31,10 @@
         vertical-align: top;
         padding: 0 4px;
       }
+    }
+
+    > .hljs {
+      background-color: #f4fafa !important;
     }
 
     iframe {

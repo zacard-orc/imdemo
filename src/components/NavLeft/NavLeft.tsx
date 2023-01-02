@@ -45,8 +45,10 @@ export default defineComponent({
         const ret = sub.filter((el2) => {
           if (word.value === '') return true
           return (
+            // @ts-ignore
             el2[K_ENTRY_LANG[i18nLocale.locale.value]].toLowerCase().includes(word.value) ||
-            el2.name_meta.toLowerCase().includes(word.value)
+            el2.name_meta.toLowerCase().includes(word.value) ||
+            el2?.desc?.toLowerCase().includes(word.value)
           )
         })
         if (ret.length > 0) {
@@ -76,7 +78,10 @@ export default defineComponent({
     }
 
     return () => (
-      <div className="nav-left" style={{ display: path.value.includes('block-') ? 'none' : 'block' }}>
+      <div
+        className="nav-left"
+        style={{ display: path.value.includes('block-') ? 'none' : 'block' }}
+      >
         <input-atom onSearch={mgSearch} onUpdateBx={mgSearch2} />
         <gap-one />
         <div className="result-list">

@@ -5,5 +5,6 @@ interface IMenu {
   name_en: string
   name_ja?: string
   name_ko?: string
+  desc?: string
   children?: IMenu[]
 }

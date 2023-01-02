@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
-import 'highlight.js/styles/base16/tomorrow-night.css'
+// import 'highlight.js/styles/base16/tomorrow-night.css'
+import 'highlight.js/styles/github.css'
 import './index.scss'
 
 import { createApp, defineAsyncComponent } from 'vue'
