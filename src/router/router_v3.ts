@@ -12,7 +12,7 @@ const routes = [
   // block
   {
     path: '/block-:lang/:branch/:topic',
-    component: () => import('@/block/data22.vue'),
+    component: () => import('@/components/BlockPanel/BlockPanel'),
   },
   { path: '/', component: () => import('@/components/AboutUs/AboutUs') },
   { path: '/:pathMatch(.*)*', name: 'PageNo404', component: () => import('@/components/404/404') },

@@ -1,5 +1,5 @@
 <template>
-  <div class="fm">
+  <div class="fm" :style="{ 'grid-template-columns': isBlock ? '500px 1fr' : '200px 1fr' }">
     <nav-left uvv="zzz" />
     <div class="board">
       <tool-bar-top />
@@ -17,12 +17,27 @@ import { defineComponent } from 'vue'
 import NavLeft from '@/components/NavLeft/NavLeft'
 import ToolBarBottom from '@/components/ToolBarBottom/ToolBarBottom'
 import ToolBarTop from '@/components/ToolBarTop/ToolBarTop'
+
 export default defineComponent({
   name: 'App',
   components: {
     NavLeft,
     ToolBarTop,
     ToolBarBottom,
+  },
+  data() {
+    return {
+      isBlock: false,
+    }
+  },
+  watch: {
+    '$route.path': {
+      handler: function (zz) {
+        this.isBlock = zz.includes('block-')
+      },
+      deep: true,
+      immediate: true,
+    },
   },
   methods: {},
 })
@@ -41,6 +56,7 @@ export default defineComponent({
   }
   > .board {
     > .area {
+      width: 100%;
       height: calc(100vh - 90px);
       margin-bottom: 10px;
       @extend .gm-panel-radius;
