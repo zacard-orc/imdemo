@@ -4,6 +4,8 @@ import { defineComponent, onMounted, ref, watch } from 'vue'
 
 import useRouteParam from '@/hooks/useRouteParam'
 
+import zz from './sample.png'
+
 export default defineComponent({
   name: 'AreaPanel',
   components: {},
@@ -27,7 +29,6 @@ export default defineComponent({
         const file = `../../mds/${branch.value}/${name_meta}.md`
         try {
           const { html } = await import(file)
-          console.log(html)
           vhtml.value = html
         } catch (e) {
           console.error(e)

@@ -10,7 +10,7 @@
 1313
 
 # 11
-![avatar](./sample.png)
+![avatar](/mds_sucai/web/sample.png)
 
 ```javascript
 let aa = 1123
