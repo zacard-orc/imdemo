@@ -36,7 +36,7 @@ export default defineComponent({
       console.log(i18nLocale.locale.value)
     })
 
-    const enTopics = computed<string[]>(() => {
+    const enTopics = computed<IMenu[]>(() => {
       return topics.reduce((prev: IMenu[], el) => {
         const sub = el.children
         const ret = sub.filter((el2) => {
@@ -64,9 +64,9 @@ export default defineComponent({
       console.log('outer emit =>', v)
     }
 
-    const onClickTopic = (v: IMenu) => {
+    const onClickTopic = (v: IMenu, parent: IMenu) => {
       router.push({
-        path: `/web/${v.name_meta}`,
+        path: `/web/${parent.name_meta}/${v.name_meta}`,
         // @ts-ignore
         query: v,
       })
@@ -105,7 +105,7 @@ export default defineComponent({
                           key={`tk2_${idx2}`}
                           className="topic-lv2"
                           onClick={() => {
-                            onClickTopic(el2)
+                            onClickTopic(el2, el)
                           }}
                         >
                           {el2[K_ENTRY_LANG[i18nLocale.locale.value]] || el2.name_en}
