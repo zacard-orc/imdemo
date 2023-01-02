@@ -1,11 +1,12 @@
 import './NavLeft.scss'
 
 import { computed, defineComponent, onMounted, reactive, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 
 import GapOne from '@/components/GapOne/GapOne'
 import InputAtom from '@/components/InputAtom/InputAtom'
-import { K_ENTRY } from '@/constant/z'
+import { K_ENTRY, K_ENTRY_LANG } from '@/constant/z'
 
 export default defineComponent({
   name: 'NavLeft',
@@ -29,9 +30,10 @@ export default defineComponent({
         return prev
       }, {})
     )
+    const i18nLocale = useI18n()
 
     onMounted(() => {
-      console.log(props)
+      console.log(i18nLocale.locale.value)
     })
 
     const enTopics = computed<string[]>(() => {
@@ -40,7 +42,7 @@ export default defineComponent({
         const ret = sub.filter((el2) => {
           if (word.value === '') return true
           return (
-            el2.name_zh.toLowerCase().includes(word.value) ||
+            el2[K_ENTRY_LANG[i18nLocale.locale.value]].toLowerCase().includes(word.value) ||
             el2.name_meta.toLowerCase().includes(word.value)
           )
         })
@@ -88,8 +90,7 @@ export default defineComponent({
                       cps[el.name_meta] = !cps[el.name_meta]
                     }}
                   >
-                    {' '}
-                    {el.name_zh}
+                    {el[K_ENTRY_LANG[i18nLocale.locale.value]] || el.name_en}
                   </div>
                   <div
                     className="body"
@@ -106,7 +107,7 @@ export default defineComponent({
                             onClickTopic(el2)
                           }}
                         >
-                          {el2.name_zh}
+                          {el2[K_ENTRY_LANG[i18nLocale.locale.value]] || el2.name_en}
                         </div>
                       )
                     })}
