@@ -7,6 +7,7 @@ import { useRouter } from 'vue-router'
 import GapOne from '@/components/GapOne/GapOne'
 import InputAtom from '@/components/InputAtom/InputAtom'
 import { K_ENTRY, K_ENTRY_LANG } from '@/constant/z'
+import useRouteParam from '@/hooks/useRouteParam'
 
 export default defineComponent({
   name: 'NavLeft',
@@ -35,6 +36,8 @@ export default defineComponent({
     onMounted(() => {
       console.log(i18nLocale.locale.value)
     })
+
+    const { path } = useRouteParam()
 
     const enTopics = computed<IMenu[]>(() => {
       return topics.reduce((prev: IMenu[], el) => {
@@ -66,14 +69,14 @@ export default defineComponent({
 
     const onClickTopic = (v: IMenu, parent: IMenu) => {
       router.push({
-        path: `/web/${parent.name_meta}/${v.name_meta}`,
+        path: `/lang-web/${parent.name_meta}/${v.name_meta}`,
         // @ts-ignore
         query: v,
       })
     }
 
     return () => (
-      <div className="nav-left">
+      <div className="nav-left" style={{ display: path.value.includes('block-') ? 'none' : 'block' }}>
         <input-atom onSearch={mgSearch} onUpdateBx={mgSearch2} />
         <gap-one />
         <div className="result-list">

@@ -10,6 +10,7 @@ import Markdown, { Mode } from 'vite-plugin-markdown'
 import vuezz from 'vue-highlight.js/lib/languages/vue'
 
 const mit: any = MarkdownIt({
+  html: true,
   highlight: function (str, lang) {
     hljs.registerLanguage('vue', vuezz)
     if (lang && hljs.getLanguage(lang)) {

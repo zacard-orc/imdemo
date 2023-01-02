@@ -32,5 +32,12 @@
         padding: 0 4px;
       }
     }
+
+    iframe {
+      border: none;
+      width: 50%;
+      min-height: 300px;
+      border-radius: 8px;
+    }
   }
 }

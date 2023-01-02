@@ -4,7 +4,16 @@ import * as VueRouter from 'vue-router'
 https://router.vuejs.org/zh/guide/#html
  */
 const routes = [
-  { path: '/:lang/:branch/:topic', component: () => import('@/components/AreaPanel/AreaPanel') },
+  //doc
+  {
+    path: '/lang-:lang/:branch/:topic',
+    component: () => import('@/components/AreaPanel/AreaPanel'),
+  },
+  // block
+  {
+    path: '/block-:lang/:branch/:topic',
+    component: () => import('@/block/data22.vue'),
+  },
   { path: '/', component: () => import('@/components/AboutUs/AboutUs') },
   { path: '/:pathMatch(.*)*', name: 'PageNo404', component: () => import('@/components/404/404') },
 ]

@@ -1,10 +1,15 @@
 import { nextTick, reactive, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
-export default function useRouteParam(Action = () => {}) {
+export default function useRouteParam(
+  Action = () => {
+    void 0
+  }
+) {
   const route = useRoute()
   const topic = ref('0')
   const branch = ref('0')
+  const path = ref('0')
   const query = reactive({})
 
   watch(
@@ -12,7 +17,9 @@ export default function useRouteParam(Action = () => {}) {
     async (z) => {
       topic.value = z.params.topic as string
       branch.value = z.params.branch as string
+      //@ts-ignore
       query.value = z.query
+      path.value = z.path
 
       nextTick(() => {
         Action()
@@ -28,5 +35,6 @@ export default function useRouteParam(Action = () => {}) {
     topic,
     branch,
     query,
+    path,
   }
 }
