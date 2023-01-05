@@ -10,8 +10,12 @@ const h2 = html.replaceAll(pattern, function (match: string, index:number) {
     return `<span><img src="/emoji/${emid}.svg" class="emj" alt=${emid}/></span>`
 })
 ```
+
+```text
 asf[ :smile] asdf [ :chat] zxb [ :axe] zzsdfs  
 asf[:smile] asdf [:chat] zxb [:axe] zzsdfs
+```
+
 
 ### Sample - 2
 ```javascript
@@ -21,5 +25,9 @@ const c = a.replace(pattern2,'$3, $2, $1')
 console.log(a)
 console.log(c)
 ```
+
+```text
 jay sad home next sa33 can go say bao sa5sab back  
 jay sad home next sa5,  can go say bao , sa33sab back
+```
+

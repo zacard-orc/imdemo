@@ -15,7 +15,12 @@ const mit: any = MarkdownIt({
     hljs.registerLanguage('vue', vuezz)
     if (lang && hljs.getLanguage(lang)) {
       try {
-        return `<pre class="hljs"><code>${
+        if (lang === 'text') {
+          return `<pre class="hljs metaz-${lang}"><div class="metaz-float"><div>输出</div></div><code>${
+            hljs.highlight(str, { language: lang, ignoreIllegals: true }).value
+          }</code></pre>`
+        }
+        return `<pre class="hljs metaz-${lang}"><code>${
           hljs.highlight(str, { language: lang, ignoreIllegals: true }).value
         }</code></pre>`
       } catch (__) {
