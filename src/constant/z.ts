@@ -10,6 +10,7 @@ export const K_ENTRY: IMenu[] = [
       { level: 2, name_zh: 'Css位置', name_en: 'css position', name_meta: 'css_pos', desc: 'zss' },
       { level: 2, name_zh: '居中', name_en: 'center', name_meta: 'css_center' },
       { level: 2, name_zh: '长宽一半', name_en: 'padding half', name_meta: 'css_padpct' },
+      { level: 2, name_zh: 'Margin0Auto', name_en: 'margin 0 auto', name_meta: 'css_margin0auto' },
       { level: 2, name_zh: '正则replaceAll', name_en: 'regex replaceAll', name_meta: 'basic_regex_replaceAll' },
     ],
   },
