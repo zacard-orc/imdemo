@@ -5,8 +5,8 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import hljs from 'highlight.js'
 import MarkdownIt from 'markdown-it'
 import path from 'path'
-import { defineConfig } from 'vite'
-import Markdown, { Mode } from 'vite-plugin-markdown'
+import {defineConfig} from 'vite'
+import Markdown, {Mode} from 'vite-plugin-markdown'
 import vuezz from 'vue-highlight.js/lib/languages/vue'
 
 const mit: any = MarkdownIt({
@@ -38,7 +38,7 @@ export default defineConfig({
     vue(),
     vueJsx({}),
     Markdown({
-      mode: [Mode.VUE, Mode.HTML],
+      mode: [Mode.HTML, Mode.TOC],
       markdown: (body) => body,
       markdownIt: mit,
     }),

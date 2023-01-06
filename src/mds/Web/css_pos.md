@@ -44,7 +44,7 @@
 
 <iframe src="/public/p5demo/p5_0006.html"></iframe>
 
-# 使用transform translateY 位置被保留
+# 使用translateY位置被保留
 ```css
 .abc {
       width: 300px;
@@ -59,7 +59,7 @@
 ```
 <iframe src="/public/p5demo/p5_0006.html"></iframe>
 
-# 叠加使用tranform和pos relative 位置被保留
+# 叠加使用trans和pos位置被保留
 ```css
 .abc {
       width: 300px;
@@ -120,3 +120,44 @@ block 填充坑位
 ```
 
 <iframe src="/public/p5demo/p5_0008.html"></iframe>
+
+# 层内block
+```html
+<body>
+<div class='abc'>
+  <div class='space'>
+    <div class='space-content'>space-content</div>
+  </div>
+  <div class='normal'>normal</div>
+</div>
+</body>
+<style>
+  .abc {
+      width: 300px;
+      height: 200px;
+      background-color: #aee5ae;
+  }
+  .normal {
+      width: 150px;
+      height: 50px;
+      background-color: lightblue;
+      text-align: right;
+      font-size: 12px;
+  }
+  .space {
+      position: relative;
+      height: 0;
+  }
+  .space-content {
+      position: absolute;
+      /*z-index: 10;*/
+      top: 10px;
+      width: 100px;
+      height: 25px;
+      font-size: 12px;
+      background-color: palevioletred;
+  }
+</style>
+```
+
+<iframe src="/public/p5demo/p5_0009.html"></iframe>
