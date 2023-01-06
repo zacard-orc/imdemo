@@ -13,8 +13,8 @@
   > .toc-panel {
     position: fixed;
     right: 0;
-    width: 200px;
-    padding: 6px;
+    width: 240px;
+    padding: 6px 0;
     background-color: #f4f8de;
     border-radius: 4px;
     font-size: 14px;
@@ -22,6 +22,8 @@
     font-weight: 500;
     > div {
       margin-bottom: 2px;
+      padding-left: 6px;
+      box-sizing: border-box;
       &:hover {
         background-color: #db7093;
         color: #fff;

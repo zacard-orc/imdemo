@@ -1,4 +1,4 @@
-# Sample - 1
+# replaceAll
 1, 必须是Node > 15到版本  
 ```typescript
 const {html} = await import(file)
@@ -18,7 +18,7 @@ asf[:smile] asdf [:chat] zxb [:axe] zzsdfs
 ```
 
 
-# Sample - 2
+# $1,$2
 ```javascript
 const a = 'jay sad home next sa33 can go say bao sa5sab back'
 const pattern2 = /(sa\d+)(.*)(sa\d+)/gi

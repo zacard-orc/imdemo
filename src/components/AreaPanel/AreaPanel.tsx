@@ -65,8 +65,12 @@ export default defineComponent({
       //  @ts-ignore
       <div className="area-panel">
         <div className="toc-panel">
-          {(vtoc.value as IToc[])?.map((el) => {
-            return <div>{uncode(el.content)}</div>
+          {(vtoc.value as IToc[])?.map((el, idx) => {
+            return (
+              <div>
+                {idx + 1}, {uncode(el.content)}
+              </div>
+            )
           })}
         </div>
         <div v-html={vhtml.value} class="markdown-body" />
