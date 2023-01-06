@@ -36,7 +36,6 @@ export default defineComponent({
             return `<span><img src="/emoji/${emid}.svg" class="emj" alt=${emid}/></span>`
           })
 
-          console.log(h2)
           vhtml.value = h2
         } catch (e) {
           console.error(e)

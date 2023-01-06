@@ -19,7 +19,8 @@ export default defineComponent({
     watch(
       () => topic,
       async () => {
-        console.log('topic')
+        // console.log('blockpanel', branch, topic)
+        console.log('blockpanel', `${branch.value}${topic.value}`)
         try {
           void 0
         } catch (e) {

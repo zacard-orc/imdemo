@@ -13,7 +13,6 @@ import router_v3 from './router/router_v3'
 
 const app = createApp(App)
 
-app.component(
-  `WebBlockDemo`, defineAsyncComponent(() => import(`@/block/Web/BlockDemo.vue`))
-)
+app.component(`WebBlockDemo`, defineAsyncComponent(() => import(`@/block/Web/BlockDemo.vue`)))
+app.component(`WebP5Padpct`, defineAsyncComponent(() => import(`@/block/Web/P5Padpct.vue`)))
 app.use(store).use(i18n).use(router_v3).mount('#app')

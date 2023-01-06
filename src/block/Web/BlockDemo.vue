@@ -1,5 +1,6 @@
 <template>
   <div>block demo {{ d1_number }}</div>
+  <div>block demo22 {{ d1_number }}</div>
 </template>
 
 <script setup>
