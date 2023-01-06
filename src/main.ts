@@ -6,7 +6,7 @@ import './index.scss'
 import { createApp, defineAsyncComponent } from 'vue'
 
 import { i18n } from '@/i18n'
-import { store } from '@/store'
+import { store } from '@/store/store_v3'
 
 import App from './App.vue'
 import router_v3 from './router/router_v3'

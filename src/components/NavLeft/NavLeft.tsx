@@ -1,12 +1,13 @@
 import './NavLeft.scss'
 
-import { computed, defineComponent, onMounted, reactive, ref } from 'vue'
+import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 
 import GapOne from '@/components/GapOne/GapOne'
 import InputAtom from '@/components/InputAtom/InputAtom'
-import { K_ENTRY, K_ENTRY_LANG } from '@/constant/z'
+import { K_ENTRY_CPP, K_ENTRY_GO, K_ENTRY_JAVA, K_ENTRY_K8S, K_ENTRY_LANG, K_ENTRY_WEB } from '@/constant/z'
 import useRouteParam from '@/hooks/useRouteParam'
 
 export default defineComponent({
@@ -22,15 +23,43 @@ export default defineComponent({
     },
   },
   setup(props) {
+    /* 路由 */
     const router = useRouter()
-    const topics = reactive<IMenu[]>(K_ENTRY)
+
+    /* 话题 */
+    const topics = ref<IMenu[]>(K_ENTRY_WEB)
+    const topicMap = reactive<Record<string, IMenu[]>>({
+      WEB: K_ENTRY_WEB,
+      JAVA: K_ENTRY_JAVA,
+      K8S: K_ENTRY_K8S,
+      GO: K_ENTRY_GO,
+      'C/C++': K_ENTRY_CPP,
+    })
+
+    /* 搜索词 */
     const word = ref('')
-    const cps = reactive(
-      topics.reduce((prev: Record<string, boolean>, el) => {
+
+    /* 折叠 */
+    const cps = ref(
+      topics.value.reduce((prev: Record<string, boolean>, el) => {
         prev[el.name_meta] = true //true-放开，false-折叠
         return prev
       }, {})
     )
+
+    /* 选中的编程语言 */
+    const store = useStore()
+    watch(
+      () => store.state.codeLang,
+      async (n, _) => {
+        topics.value = topicMap[n.toUpperCase()]
+        cps.value = topicMap[n.toUpperCase()].reduce((prev: Record<string, boolean>, el) => {
+          prev[el.name_meta] = true //true-放开，false-折叠
+          return prev
+        }, {})
+      }
+    )
+
     const i18nLocale = useI18n()
 
     onMounted(() => {
@@ -40,7 +69,7 @@ export default defineComponent({
     const { path } = useRouteParam()
 
     const enTopics = computed<IMenu[]>(() => {
-      return topics.reduce((prev: IMenu[], el) => {
+      return topics.value.reduce((prev: IMenu[], el) => {
         const sub = el.children
         const ret = sub.filter((el2) => {
           if (word.value === '') return true
@@ -60,6 +89,7 @@ export default defineComponent({
         return prev
       }, [])
     })
+
     const mgSearch = (v: string) => {
       console.log('outer fn =>', v)
       word.value = v
@@ -78,10 +108,7 @@ export default defineComponent({
     }
 
     return () => (
-      <div
-        className="nav-left"
-        style={{ display: path.value.includes('block-') ? 'none' : 'block' }}
-      >
+      <div className="nav-left" style={{ display: path.value.includes('block-') ? 'none' : 'block' }}>
         <input-atom onSearch={mgSearch} onUpdateBx={mgSearch2} />
         <gap-one />
         <div className="result-list">
@@ -96,7 +123,7 @@ export default defineComponent({
                   <div
                     className="head"
                     onClick={() => {
-                      cps[el.name_meta] = !cps[el.name_meta]
+                      cps.value[el.name_meta] = !cps.value[el.name_meta]
                     }}
                   >
                     {el[K_ENTRY_LANG[i18nLocale.locale.value]] || el.name_en}
@@ -104,7 +131,7 @@ export default defineComponent({
                   <div
                     className="body"
                     style={{
-                      height: cps[el.name_meta] ? 'auto' : '0', //true-放开，false-折叠
+                      height: cps.value[el.name_meta] ? 'auto' : '0', //true-放开，false-折叠
                     }}
                   >
                     {sub.map((el2, idx2) => {

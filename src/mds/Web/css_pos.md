@@ -26,7 +26,7 @@
 
 <iframe src="/public/p5demo/p5_0005.html"></iframe>
 
-# 使用pos relative 位置被保留
+# 使用pos relative，位置被保留
 
 ```css
  .abc {
@@ -44,7 +44,7 @@
 
 <iframe src="/public/p5demo/p5_0006.html"></iframe>
 
-# 使用translateY位置被保留
+# 使用translateY，位置被保留
 ```css
 .abc {
       width: 300px;
@@ -59,7 +59,7 @@
 ```
 <iframe src="/public/p5demo/p5_0006.html"></iframe>
 
-# 叠加使用trans和pos位置被保留
+# 叠加使用trans和pos，位置被保留
 ```css
 .abc {
       width: 300px;
@@ -74,7 +74,7 @@
 ```
 <iframe src="/public/p5demo/p5_0006.html"></iframe>
 
-# 加上float: left
+# 加上float: left，位置被占但text..
 加上float: left后 无论transform还是relative都出现了分离  
 block 填充坑位
 但是block里都text还是保持没动
@@ -104,7 +104,7 @@ block 填充坑位
 <iframe src="/public/p5demo/p5_0007.html"></iframe>
 
 
-# pos变成absoulte
+# pos变成absoulte，位置被占
 位置被填充，无法占位了  
 无论是否能设置float   
 ```css
@@ -121,7 +121,7 @@ block 填充坑位
 
 <iframe src="/public/p5demo/p5_0008.html"></iframe>
 
-# 层内block
+# 层内block效果，同位置被占
 ```html
 <body>
 <div class='abc'>

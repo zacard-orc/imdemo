@@ -4,12 +4,12 @@ import { createStore } from 'vuex'
 export const store = createStore({
   state() {
     return {
-      count: 0,
+      codeLang: 'Web',
     }
   },
   mutations: {
-    increment(state: IState) {
-      state.count++
+    codeLang(state: ICode, code: string) {
+      state.codeLang = code
     },
   },
 })

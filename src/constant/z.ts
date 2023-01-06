@@ -1,6 +1,6 @@
 export const K_CATA: string[] = ['v2', 'v3sfc', 'v3tsx']
 
-export const K_ENTRY: IMenu[] = [
+export const K_ENTRY_WEB: IMenu[] = [
   {
     level: 1,
     name_en: 'Web',
@@ -37,6 +37,59 @@ export const K_ENTRY: IMenu[] = [
     ],
   },
 ]
+
+export const K_ENTRY_GO: IMenu[] = [
+  {
+    level: 1,
+    name_en: 'Basic',
+    name_zh: '基础',
+    name_meta: 'Basic',
+    children: [
+      { level: 2, name_zh: '日志', name_en: 'go log', name_meta: 'go_log', desc: 'go log format' },
+      { level: 2, name_zh: '协程', name_en: 'go func', name_meta: 'go_func', desc: 'go func x' },
+    ],
+  },
+]
+
+export const K_ENTRY_JAVA: IMenu[] = [
+  {
+    level: 1,
+    name_en: 'Basic',
+    name_zh: '基础',
+    name_meta: 'Basic',
+    children: [
+      { level: 2, name_zh: 'Java日志', name_en: 'go log', name_meta: 'go_log', desc: 'go log format' },
+      { level: 2, name_zh: 'Java协程', name_en: 'go func', name_meta: 'go_func', desc: 'go func x' },
+    ],
+  },
+]
+
+export const K_ENTRY_K8S: IMenu[] = [
+  {
+    level: 1,
+    name_en: 'Basic',
+    name_zh: '基础',
+    name_meta: 'Basic',
+    children: [
+      { level: 2, name_zh: 'K8S日志', name_en: 'go log', name_meta: 'go_log', desc: 'go log format' },
+      { level: 2, name_zh: 'K8S协程', name_en: 'go func', name_meta: 'go_func', desc: 'go func x' },
+    ],
+  },
+]
+
+export const K_ENTRY_CPP: IMenu[] = [
+  {
+    level: 1,
+    name_en: 'Basic',
+    name_zh: '基础',
+    name_meta: 'Basic',
+    children: [
+      { level: 2, name_zh: 'CPP日志', name_en: 'go log', name_meta: 'go_log', desc: 'go log format' },
+      { level: 2, name_zh: 'CPP协程', name_en: 'go func', name_meta: 'go_func', desc: 'go func x' },
+    ],
+  },
+]
+
 export const K_ENTRY_LANG: Record<string, string> = {
   'zh-CN': 'name_zh',
   en: 'name_en',

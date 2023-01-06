@@ -7,6 +7,9 @@ declare module '*.vue' {
 interface IState {
   count: number
 }
+interface ICode {
+  codeLang: string
+}
 
 declare module '*.svg' {
   const content: any
