@@ -85,7 +85,7 @@ export default defineComponent({
       rfmd?.value.scrollTo({
         left: 0,
         // @ts-ignore
-        top: e?.offsetTop - 60,
+        top: e?.offsetTop - 55,
         behavior: 'smooth',
       })
       // rfmd?.value.scrollTo(0, e?.offsetTop - 60)

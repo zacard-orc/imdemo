@@ -28,7 +28,10 @@ export const K_ENTRY_WEB: IMenu[] = [
     name_en: 'Vue',
     name_zh: 'Vue',
     name_meta: 'Vue',
-    children: [{ level: 2, name_zh: 'vue3 tsx', name_en: 'vue3 tsx', name_meta: 'css_padpct' }],
+    children: [
+      { level: 2, name_zh: 'vue3 tsx', name_en: 'vue3 tsx', name_meta: 'vue3_tsx' },
+      { level: 2, name_zh: 'vue3 sfc', name_en: 'vue3 sfc', name_meta: 'vue3_sfc' },
+    ],
   },
   {
     level: 1,
