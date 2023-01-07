@@ -100,8 +100,9 @@ export default defineComponent({
     }
 
     const onClickTopic = (v: IMenu, parent: IMenu) => {
+      console.log(store.state.codeLang)
       router.push({
-        path: `/lang-web/${parent.name_meta}/${v.name_meta}`,
+        path: `/lang-${store.state.codeLang.toLowerCase()}/${parent.name_meta}/${v.name_meta}`,
         // @ts-ignore
         query: v,
       })

@@ -24,7 +24,7 @@ export default defineComponent({
       console.log(ctx)
     })
 
-    const { branch, topic, query } = useRouteParam(() => (countRef.value += 1))
+    const { branch, topic, query, lang } = useRouteParam(() => (countRef.value += 1))
 
     watch(
       () => topic,
@@ -32,7 +32,7 @@ export default defineComponent({
         console.log('topic')
         // @ts-ignore
         const { name_meta } = query.value
-        const file = `../../mds/${branch.value}/${name_meta}.md`
+        const file = `../../mds/${lang.value}/${branch.value}/${name_meta}.md`
         try {
           const z = await import(file)
           const html = z.html

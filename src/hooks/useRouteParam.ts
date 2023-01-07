@@ -7,6 +7,7 @@ export default function useRouteParam(
   }
 ) {
   const route = useRoute()
+  const lang = ref('0')
   const topic = ref('0')
   const branch = ref('0')
   const path = ref('0')
@@ -17,6 +18,7 @@ export default function useRouteParam(
     async (z) => {
       topic.value = z.params.topic as string
       branch.value = z.params.branch as string
+      lang.value = z.params.lang as string
       //@ts-ignore
       query.value = z.query
       path.value = z.path
@@ -36,5 +38,6 @@ export default function useRouteParam(
     branch,
     query,
     path,
+    lang,
   }
 }

@@ -75,12 +75,11 @@ export const K_ENTRY_JAVA: IMenu[] = [
 export const K_ENTRY_K8S: IMenu[] = [
   {
     level: 1,
-    name_en: 'Basic',
-    name_zh: '基础',
-    name_meta: 'Basic',
+    name_en: 'Docker',
+    name_zh: 'Docker',
+    name_meta: 'Docker',
     children: [
-      { level: 2, name_zh: 'K8S日志', name_en: 'go log', name_meta: 'go_log', desc: 'go log format' },
-      { level: 2, name_zh: 'K8S协程', name_en: 'go func', name_meta: 'go_func', desc: 'go func x' },
+      { level: 2, name_zh: 'app转映像', name_en: 'docker template', name_meta: 'docker_template', desc: '抽成docker模版' },
     ],
   },
 ]
