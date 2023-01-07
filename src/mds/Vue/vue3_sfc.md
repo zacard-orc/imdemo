@@ -655,19 +655,112 @@ export default {
 import { useRouter, useRoute } from 'vue-router'
 
 export default {
-  setup() {
-    const router = useRouter()
-    const route = useRoute()
+    setup() {
+        const router = useRouter()
+        const route = useRoute()
 
-    function pushWithQuery(query) {
-      router.push({
-        name: 'search',
-        query: {
-          ...route.query,
-          ...query,
-        },
-      })
+        function pushWithQuery(query) {
+            router.push({
+                name: 'search',
+                query: {
+                    ...route.query,
+                    ...query,
+                },
+            })
+        }
     }
-  },
+}
 
+```
+
+# plugin
+plugin本身
+```js
+export const pgn = {
+  install: (app) => {
+    app.provide('CITY','SHANGHAI')
+
+    // vue2
+    // app.prototype.$showme = function (){
+    //   console.log('im plugin vue2')
+    // }
+
+    // vue3
+    app.config.globalProperties.$showme = function (){
+      return 'im plugin vue3'
+    }
+  }
+}
+```
+
+使用
+```vue
+<template>
+  <div>
+    <div>city = {{ city }}</div>
+    <div>msg from data = {{ msg }}</div>
+    <div>msg from sugar = {{ $showme() }}</div>
+  </div>
+</template>
+
+<script setup>
+import {inject, ref, getCurrentInstance} from "vue";
+
+const city = inject('CITY')
+const msg = ref('...')
+const {appContext} = getCurrentInstance()
+msg.value = appContext.config.globalProperties.$showme()
+
+</script>
+
+<style/>
+```
+
+# mixin/hooks
+从mixin改为了hooks
+```js
+import { ref, onMounted, onUnmounted } from 'vue'
+
+export const mixHello = {
+  created: function () {
+    this.hello()
+  },
+  methods: {
+    hello() {
+      return 'hello from mixin!'
+    }
+  }
+}
+
+
+export function useMouse() {
+  const x = ref(0)
+  const y = ref(0)
+
+  function update(event) {
+    x.value = event.pageX
+    y.value = event.pageY
+  }
+
+  onMounted(() => window.addEventListener('mousemove', update))
+  onUnmounted(() => window.removeEventListener('mousemove', update))
+
+  return { x, y }
+}
+```
+使用
+```vue
+<template>
+  <div>
+    mounse pos sfc {{x}} {{y}}
+  </div>
+</template>
+
+<script setup>
+import { useMouse } from "./mixhook_z";
+
+const { x, y } = useMouse()
+</script>
+
+<style />
 ```
