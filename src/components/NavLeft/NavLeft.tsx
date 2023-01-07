@@ -27,7 +27,7 @@ export default defineComponent({
     const router = useRouter()
 
     /* 话题 */
-    const topics = ref<IMenu[]>(K_ENTRY_WEB)
+    const topics = ref<IMenu[]>(K_ENTRY_K8S)
     const topicMap = reactive<Record<string, IMenu[]>>({
       WEB: K_ENTRY_WEB,
       JAVA: K_ENTRY_JAVA,
@@ -100,7 +100,6 @@ export default defineComponent({
     }
 
     const onClickTopic = (v: IMenu, parent: IMenu) => {
-      console.log(store.state.codeLang)
       router.push({
         path: `/lang-${store.state.codeLang.toLowerCase()}/${parent.name_meta}/${v.name_meta}`,
         // @ts-ignore

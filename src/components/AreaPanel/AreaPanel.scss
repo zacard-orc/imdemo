@@ -31,6 +31,10 @@
         cursor: pointer;
       }
     }
+
+    > .lv2 {
+      padding-left: 12px;
+    }
   }
 
   > .markdown-body {
@@ -39,6 +43,14 @@
       color: #5b5654;
       margin: 4px 0;
       font-size: 20px;
+    }
+
+    h2,h3,h4 {
+      font-size: 18px;
+      color: #867f7b;
+      font-family: Tahoma, sans-serif;
+      font-weight: 500;
+
     }
 
     p {

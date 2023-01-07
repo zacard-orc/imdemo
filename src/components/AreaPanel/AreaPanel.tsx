@@ -18,6 +18,7 @@ export default defineComponent({
     const vhtml = ref('')
     const rfmd = ref(null)
     const vtoc = reactive<IToc[]>([])
+    const ct_lv1 = ref(1)
 
     onMounted(() => {
       console.log(props)
@@ -37,6 +38,7 @@ export default defineComponent({
           const z = await import(file)
           const html = z.html
           vtoc.value = z.toc
+          console.log(z.toc)
 
           const pattern = /\[:\w+\]/gi
 
@@ -102,11 +104,24 @@ export default defineComponent({
       >
         <div className="toc-panel">
           {(vtoc.value as IToc[])?.map((el, idx) => {
+            if (el.level === '2') {
+              return (
+                <div
+                  onClick={() => {
+                    navScroll(el)
+                  }}
+                  className="lv2"
+                >
+                  - {uncode(el.content)}
+                </div>
+              )
+            }
             return (
               <div
                 onClick={() => {
                   navScroll(el)
                 }}
+                className="lv1"
               >
                 {idx + 1}, {uncode(el.content)}
               </div>

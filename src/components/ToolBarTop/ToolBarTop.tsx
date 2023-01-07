@@ -23,8 +23,8 @@ export default defineComponent({
               store.commit('codeLang', e?.target?.value)
             }}
           >
-            <option>Web</option>
             <option>K8s</option>
+            <option>Web</option>
             <option>Go</option>
             <option>Java</option>
             <option>C/C++</option>
