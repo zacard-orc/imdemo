@@ -13,7 +13,14 @@ export const K_ENTRY_WEB: IMenu[] = [
       { level: 2, name_zh: 'Margin0Auto', name_en: 'margin 0 auto', name_meta: 'css_margin0auto', desc: 'transform' },
       { level: 2, name_zh: '正则replaceAll', name_en: 'regex replaceAll', name_meta: 'basic_regex_replaceAll' },
       { level: 2, name_zh: '毛玻璃', name_en: 'glass', name_meta: 'css_glass', desc: 'glass filter 毛玻璃' },
-      { level: 2, name_zh: '基线baseline', name_en: 'baseline', name_meta: 'css_baseline', desc: 'verical align 基线 垂直 baseline' },
+      {
+        level: 2,
+        name_zh: '基线baseline',
+        name_en: 'baseline',
+        name_meta: 'css_baseline',
+        desc: 'verical align 基线 垂直 baseline',
+      },
+      { level: 2, name_zh: '浮动float', name_en: 'float', name_meta: 'css_float', desc: 'float 浮动 清除浮动' },
     ],
   },
   {

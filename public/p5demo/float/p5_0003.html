@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Title</title>
+    <script src='../../tp/p5.min.js'></script>
+</head>
+<body>
+
+</body>
+<script>
+    function setup() {
+        createCanvas(300, 200);
+    }
+
+    function draw() {
+        colorMode(RGB);
+        background('#fff');
+
+        fill('#C9AEFB');
+        strokeWeight(0);
+        rect(200, 0, 100, 40);
+
+        fill('#FFC168');
+        strokeWeight(0);
+        rect(220, 40, 80, 60);
+
+        fill('#C7E4ED');
+        strokeWeight(0);
+        rect(0, 0, 100, 40);
+
+        fill('#FBAEAF');
+        strokeWeight(0);
+        rect(0, 40, 80, 80);
+
+
+        textSize(18);
+        fill('#414040');
+        text('div1', 260, 20);
+
+        fill('#414040');
+        text('div2', 260, 60);
+
+        fill('#414040');
+        text('div3', 0, 20);
+
+        fill('#414040');
+        text('div4', 0, 60);
+
+    }
+</script>
+</html>
