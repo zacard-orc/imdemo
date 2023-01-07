@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "dev30": "vite",
-    "build": "vite build",
+    "compile": "vite build",
+    "syncdir": "node scripts/sync_dir.js",
+    "build": "pnpm compile && pnpm syncdir",
     "preview": "vite preview",
     "lint": "eslint --fix .",
     "format": "prettier --write './**/*.{js,ts,vue,css,md,json,html}' --config ./.prettierrc",
@@ -20,6 +22,7 @@
     "@vitejs/plugin-vue-jsx": "^2.1.1",
     "axios": "^1.2.0",
     "concurrently": "^7.6.0",
+    "copy-dir": "^1.3.0",
     "highlight.js": "^11.7.0",
     "lodash": "^4.17.21",
     "markdown-it": "^13.0.1",
