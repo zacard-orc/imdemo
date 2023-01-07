@@ -39,13 +39,8 @@ export const K_ENTRY_WEB: IMenu[] = [
     name_zh: 'React',
     name_meta: 'React',
     children: [
-      { level: 2, name_zh: 'useMemo使用', name_en: 'usememo', name_meta: 'react_usememo' },
-      {
-        level: 2,
-        name_zh: 'useCallback使用',
-        name_en: 'usecallback',
-        name_meta: 'react_usecallback',
-      },
+      { level: 2, name_zh: 'useMemo使用', name_en: 'usememo', name_meta: 'use_memo', desc: 'useMemo' },
+      { level: 2, name_zh: 'useCallback使用', name_en: 'usecallback', name_meta: 'use_callback', desc: 'useCallback' },
     ],
   },
 ]
