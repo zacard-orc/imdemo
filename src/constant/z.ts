@@ -31,6 +31,7 @@ export const K_ENTRY_WEB: IMenu[] = [
     children: [
       { level: 2, name_zh: 'vue3 tsx', name_en: 'vue3 tsx', name_meta: 'vue3_tsx' },
       { level: 2, name_zh: 'vue3 sfc', name_en: 'vue3 sfc', name_meta: 'vue3_sfc' },
+      { level: 2, name_zh: 'vue抽象组件', name_en: 'vue json component', name_meta: 'vue_abstract_schema' },
     ],
   },
   {

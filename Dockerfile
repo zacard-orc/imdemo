@@ -1,4 +1,11 @@
-FROM nginx
-COPY dist/ /usr/share/nginx/html/dist/
-COPY scripts/nginx.conf /etc/nginx/nginx.conf
-COPY scripts/mime.types /etc/nginx/mime.types
+FROM node:14.19.3
+
+WORKDIR /app
+COPY . /app
+
+RUN npm config set registry "https://registry.npm.taobao.org/"
+RUN npm install
+
+EXPOSE 5173
+
+CMD npm run dev30
