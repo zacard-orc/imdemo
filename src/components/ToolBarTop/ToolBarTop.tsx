@@ -1,6 +1,6 @@
 import './ToolBarTop.scss'
 
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { useStore } from 'vuex'
 
 import logo from '@/assets/logo.png'
@@ -10,6 +10,7 @@ export default defineComponent({
   name: 'ToolBarTop',
   setup() {
     const { topic, path } = useRouteParam()
+    const kid = ref<string[]>(['K8s', 'Web', 'Go', 'Java', 'C/C++'])
     const store = useStore()
 
     return () => (
@@ -17,18 +18,36 @@ export default defineComponent({
       <div className="toolbar-top" style={{ paddingLeft: path.value.includes('block-') ? '12px' : '0' }}>
         <div>{`${topic.value ?? ''}`}</div>
         <div>
-          <select
-            onChange={(e: Event) => {
-              // @ts-ignore
-              store.commit('codeLang', e?.target?.value)
-            }}
-          >
-            <option>K8s</option>
-            <option>Web</option>
-            <option>Go</option>
-            <option>Java</option>
-            <option>C/C++</option>
-          </select>
+          {kid.value.map((el, idx) => {
+            return (
+              <i
+                key={`kid_${idx}`}
+                onClick={() => {
+                  store.commit('codeLang', el)
+                }}
+              >
+                {el}
+              </i>
+            )
+          })}
+
+          {/*  <div>K8s</div>*/}
+          {/*<div>Web</div>*/}
+          {/*<div>Go</div>*/}
+          {/*<div>Java</div>*/}
+          {/*<div>C/C++</div>*/}
+          {/*<select*/}
+          {/*  onChange={(e: Event) => {*/}
+          {/*    // @ts-ignore*/}
+          {/*    store.commit('codeLang', e?.target?.value)*/}
+          {/*  }}*/}
+          {/*>*/}
+          {/*  <option>K8s</option>*/}
+          {/*  <option>Web</option>*/}
+          {/*  <option>Go</option>*/}
+          {/*  <option>Java</option>*/}
+          {/*  <option>C/C++</option>*/}
+          {/*</select>*/}
         </div>
         <div>
           <img src={logo} alt="logo" />

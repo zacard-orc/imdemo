@@ -6,7 +6,7 @@
   height: 40px;
   margin-bottom: 10px;
   display: grid;
-  grid-template-columns: 1fr 100px 200px;
+  grid-template-columns: 1fr 200px 200px;
   > div {
     line-height: 50px;
     font-weight: 600;
@@ -15,12 +15,21 @@
 
   // select 切换编程语言
   > div:nth-child(2){
-    > select {
-      width: 100%;
-      height: 26px;
-      border: none;
-      font-family:  Lato-Bold,sans-serif;
+    > i {
+      font-style:normal;
+      margin-right: 6px;
+      user-select: none;
+      &:hover {
+        cursor: pointer;
+        color: #7B9CA5;
+      }
     }
+    //> select {
+    //  width: 100%;
+    //  height: 26px;
+    //  border: none;
+    //  font-family:  Lato-Bold,sans-serif;
+    //}
   }
 
   // logo

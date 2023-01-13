@@ -21,6 +21,7 @@ export const K_ENTRY_WEB: IMenu[] = [
         desc: 'verical align 基线 垂直 baseline',
       },
       { level: 2, name_zh: '浮动float', name_en: 'float', name_meta: 'css_float', desc: 'float 浮动 清除浮动' },
+      { level: 2, name_zh: 'dnd拖动', name_en: 'dnd_h5_drag', name_meta: 'basic_dnd', desc: 'dnd h5 draggable 拖动' },
     ],
   },
   {
