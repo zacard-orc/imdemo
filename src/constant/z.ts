@@ -45,6 +45,13 @@ export const K_ENTRY_WEB: IMenu[] = [
       { level: 2, name_zh: 'JSX.Element', name_en: 'jsxElement', name_meta: 'jsx_element_def', desc: 'jsx.element' },
     ],
   },
+  {
+    level: 1,
+    name_en: 'Node',
+    name_zh: 'Node',
+    name_meta: 'Node',
+    children: [{ level: 2, name_zh: 'sequelize', name_en: 'sequelize', name_meta: 'sequelize_use', desc: 'sequelize 使用' }],
+  },
 ]
 
 export const K_ENTRY_GO: IMenu[] = [
@@ -81,6 +88,7 @@ export const K_ENTRY_K8S: IMenu[] = [
     name_meta: 'Docker',
     children: [
       { level: 2, name_zh: 'app转映像', name_en: 'docker template', name_meta: 'docker_template', desc: '抽成docker模版' },
+      { level: 2, name_zh: '常用镜像', name_en: 'docker images', name_meta: 'docker_runimages', desc: '常用镜像运行' },
     ],
   },
 ]
