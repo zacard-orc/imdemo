@@ -273,3 +273,125 @@
 </html>
 ```
 <iframe src="/public/p5demo/dnd/p5_dnd_0002.html"></iframe>
+
+# 传统mousemove+拖动+拉伸
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>js实现拖拽和拉伸</title>
+</head>
+<body>
+<div id="test" class='demo'>
+  我是测试的可拉伸，拖动的元素
+</div>
+
+</body>
+<script>
+  var clickBox = document.getElementById('test');
+  /**
+   *time/author：2019/5/9 "mouyao"
+   *desc:当在当前元素上按下鼠标时，就触发拖动和拉伸操作
+   */
+  clickBox.onmousedown = function(e){
+    e=e||event;  //兼容ie和其他浏览器的写法
+    var mouseDownX = e.clientX;
+    var mouseDownY = e.clientY;
+    var clickBoxLeft = clickBox.offsetLeft;
+    var clickBoxTop = clickBox.offsetTop;
+    var clickBoxWeight = clickBox.offsetWidth;
+    var clickBoxHeight = clickBox.offsetHeight;
+
+    // 距离0，0的x,y,w,h
+    console.log(clickBoxLeft, clickBoxTop,clickBoxWeight,clickBoxHeight)
+
+    // 也是整个落点判断
+    var direction = 0; // 这个是拉伸的起点 || 边
+    if (mouseDownX<clickBoxLeft+30) {
+      direction='left';
+    } else if (mouseDownX >clickBoxLeft+clickBoxWeight - 30){
+      direction='right';
+    }
+    console.log(direction)
+
+    if (mouseDownY<clickBoxTop+30){
+      direction = 'top';
+    } else if (direction < clickBoxTop + clickBoxHeight - 30) {
+      direction = 'bottom';
+    }
+    console.log(direction)
+
+
+    if ((clickBoxLeft + clickBoxWeight-30)< mouseDownX&&mouseDownX< (clickBoxLeft + clickBoxWeight) && (clickBoxTop+clickBoxHeight-30)<mouseDownY&& mouseDownY<(clickBoxTop+clickBoxHeight)) {
+      direction = 'rightBottomCorner';
+    }else if((clickBoxLeft +30)< mouseDownX&&mouseDownX< (clickBoxLeft + clickBoxWeight-30) && (clickBoxTop+30)<mouseDownY&& mouseDownY<(clickBoxTop+clickBoxHeight-30)){     //如果是在中间位置，则实现拖动功能
+      direction="drag";
+    }
+
+    console.log(direction)
+
+
+    /**
+     *time/author：2019/5/9 "mouyao"
+     *desc:当鼠标开始华东的时候，根据鼠标的移动方向去调整他的X，Y坐标和长宽
+     */
+    document.onmousemove = function(e) {
+      e = e || event; //是要是使用原生js给我们提供的e回调参数，这存储了很多有用的信息
+      var xx = e.clientX;
+      var yy = e.clientY;
+      if (direction==='left') {
+        clickBox.style.width = clickBoxWeight + mouseDownX - xx + 'px'
+        clickBox.style.left = xx + 'px';
+      } else if (direction==='right') {
+        clickBox.style.width = clickBoxWeight + xx - mouseDownX + 'px'
+      }
+
+      if (direction==='top'){
+        clickBox.style.height = clickBoxHeight + mouseDownY - yy + 'px';
+        clickBox.style.top = yy + 'px';
+      } else if (direction==='bottom'){
+        clickBox.style.height = clickBoxHeight + yy - mouseDownY + 'px';
+      }
+      if (direction==='rightBottomCorner'){
+        clickBox.style.width = clickBoxWeight +xx-mouseDownX+'px'
+        clickBox.style.left =clickBoxLeft+'px';
+        clickBox.style.height = clickBoxHeight +yy-mouseDownY+'px';
+        clickBox.style.top =clickBoxTop+'px';
+      }else if(direction==="drag"){
+        console.log(xx,mouseDownX,clickBoxLeft)
+        // 鼠标移动的距离 就是 方块移动的距离
+        // 所以方块的落点或者刷新点就是 等于 方块移动的距离 + 方块起始边距
+        clickBox.style.left =xx-mouseDownX+clickBoxLeft+ 'px';
+        clickBox.style.top =yy-mouseDownY+clickBoxTop+ 'px';
+      }
+      //return false; //这里为了避免抖动
+    };
+    document.onmouseup = function() {
+      document.onmousemove = null;
+      document.onmouseup = null;
+    };
+    if (e.preventDefault){
+      e.preventDefault();
+    }
+  };
+  /**
+   *time/author：2019/5/9 "mouyao"
+   *desc:在拉伸的过程中，实现居中状态长存,有时间将其做成一个插件公布出来，供大家使用
+   */
+
+
+</script>
+<style>
+    .demo {
+        position:absolute;
+        left:0;
+        top:0;
+        width:600px;
+        height:600px;
+        border:1px solid #adadad;
+    }
+</style>
+</html>
+```
+<iframe src="/public/p5demo/dnd/p5_dnd_0003.html"></iframe>
