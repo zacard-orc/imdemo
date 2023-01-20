@@ -8,6 +8,7 @@ export const K_ENTRY_WEB: IMenu[] = [
     name_meta: 'Web',
     children: [
       { level: 2, name_zh: 'Css位置', name_en: 'css position', name_meta: 'css_pos', desc: 'position relative absolute float' },
+      { level: 2, name_zh: 'Css滤镜', name_en: 'css_filter', name_meta: 'css_filter', desc: '滤镜 filter blur grayscale' },
       { level: 2, name_zh: '居中', name_en: 'center', name_meta: 'css_center' },
       { level: 2, name_zh: '长宽一半', name_en: 'padding half', name_meta: 'css_padpct', desc: 'transform' },
       { level: 2, name_zh: 'Margin0Auto', name_en: 'margin 0 auto', name_meta: 'css_margin0auto', desc: 'transform' },
@@ -32,7 +33,7 @@ export const K_ENTRY_WEB: IMenu[] = [
     children: [
       { level: 2, name_zh: 'vue3 tsx', name_en: 'vue3 tsx', name_meta: 'vue3_tsx' },
       { level: 2, name_zh: 'vue3 sfc', name_en: 'vue3 sfc', name_meta: 'vue3_sfc' },
-      { level: 2, name_zh: 'vue抽象组件', name_en: 'vue json component', name_meta: 'vue_abstract_schema' },
+      { level: 2, name_zh: 'vue语法糖', name_en: 'vue json component', name_meta: 'vue_abstract_schema' },
     ],
   },
   {
