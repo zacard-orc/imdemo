@@ -110,3 +110,31 @@ sweep-flag：弧线方向
 
 x / y：弧形的终点
 ```
+
+
+# text文字
+```svg
+<text x="100" y="100" dx="20 40 60 80 100" fill="black" style="font-size:40px;">text测试</text>
+```
+
+```text
+dx 每个字符相对前一个字符的偏移距离
+dy 每个字符相对前一个字符的偏移距离
+```
+
+# animate动画
+```svg
+<svg width="500px" height="100px">
+    <rect x="0" y="0" width="100" height="100" fill="#feac5e">
+            <animate attributeName="x" from="0" to="500" dur="2s" repeatCount="indefinite" />
+    </rect>
+    <text x="0" y="50"  fill="black" style="font-size:40px;">
+      text测试
+      <animate attributeName="x" from="0" to="500" dur="2s" repeatCount="indefinite" />
+    </text>
+</svg>
+```
+
+```text
+animate 需要嵌套在属性里面
+```
