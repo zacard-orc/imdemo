@@ -106,8 +106,16 @@ export default defineComponent({
     }
 
     const onClickTopic = (v: IMenu, parent: IMenu) => {
+      let hitlang = store.state.codeLang.toLowerCase()
+      // const z = location.href.split('/')[4].split('-')[1]
+      // if (hitlang !== z) {
+      //   hitlang = z
+      // }
+      //
+      // console.log(hitlang, z)
+
       router.push({
-        path: `/lang-${store.state.codeLang.toLowerCase()}/${parent.name_meta}/${v.name_meta}`,
+        path: `/lang-${hitlang}/${parent.name_meta}/${v.name_meta}`,
         // @ts-ignore
         query: v,
       })

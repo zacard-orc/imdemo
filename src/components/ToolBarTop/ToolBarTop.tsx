@@ -1,6 +1,7 @@
 import './ToolBarTop.scss'
 
 import { defineComponent, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
 import logo from '@/assets/logo.png'
@@ -12,6 +13,7 @@ export default defineComponent({
     const { topic, path } = useRouteParam()
     const kid = ref<string[]>(['K8s', 'Web', 'Go', 'Java', 'C/C++'])
     const store = useStore()
+    const router = useRouter()
 
     return () => (
       // @ts-ignore
@@ -24,6 +26,9 @@ export default defineComponent({
                 key={`kid_${idx}`}
                 onClick={() => {
                   store.commit('codeLang', el)
+                  router.push({
+                    path: `/lang-${el}`,
+                  })
                 }}
               >
                 {el}

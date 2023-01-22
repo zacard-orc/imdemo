@@ -65,7 +65,6 @@ export default defineComponent({
             // }
           }
 
-          console.log(nwtoc)
           vtoc.value = nwtoc
 
           const pattern = /\[:\w+\]/gi
@@ -94,7 +93,6 @@ export default defineComponent({
               }
 
               if (el.tagName === 'H2') {
-                console.log(el.innerText)
                 const hit = vtoc.value.findIndex((el2) => {
                   return uncode(el2.content) === el.innerText && el2.level === '2' && el2.docIdx.startsWith(`${hit_lv1}-`)
                 })
