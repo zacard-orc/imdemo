@@ -59,3 +59,7 @@ $ mvn --version
     </profile>
 </profiles>
 ```
+
+# Idea修改
+<img src="mds_sucai/Java/maven_idea_conf1.jpg" alt="1" width="600px"/>
+<img src="mds_sucai/Java/maven_idea_conf2.jpg" alt="1" width="600px"/>
