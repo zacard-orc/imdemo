@@ -64,9 +64,15 @@ export default defineComponent({
 
     onMounted(() => {
       console.log(i18nLocale.locale.value)
+      const z = location.href.split('/')[4].split('-')[1]
+      topics.value = topicMap[z.toUpperCase()]
+      cps.value = topicMap[z.toUpperCase()].reduce((prev: Record<string, boolean>, el) => {
+        prev[el.name_meta] = true //true-放开，false-折叠
+        return prev
+      }, {})
     })
 
-    const { path } = useRouteParam()
+    const { path, lang } = useRouteParam()
 
     const enTopics = computed<IMenu[]>(() => {
       return topics.value.reduce((prev: IMenu[], el) => {

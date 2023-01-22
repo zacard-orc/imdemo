@@ -77,8 +77,8 @@ export const K_ENTRY_JAVA: IMenu[] = [
     name_zh: '基础',
     name_meta: 'Basic',
     children: [
-      { level: 2, name_zh: 'Java日志', name_en: 'go log', name_meta: 'go_log', desc: 'go log format' },
-      { level: 2, name_zh: 'Java协程', name_en: 'go func', name_meta: 'go_func', desc: 'go func x' },
+      { level: 2, name_zh: 'Spring5+Java11', name_en: 'spring5+java11', name_meta: 'spring5_11', desc: 'spring5 java11 idea' },
+      { level: 2, name_zh: 'Maven3安装', name_en: 'maven3', name_meta: 'maven3', desc: 'maven3安装' },
     ],
   },
 ]
