@@ -8,6 +8,8 @@ interface IToc {
   level: string
   content: string
   offsetTop?: number
+  docIdx: number
+  children?: IToc[] | undefined
 }
 
 export default defineComponent({
@@ -37,8 +39,34 @@ export default defineComponent({
         try {
           const z = await import(file)
           const html = z.html
-          vtoc.value = z.toc
-          console.log(z.toc)
+
+          // toc 改成树形目录
+          const nwtoc = []
+          let docIdx = 0
+          let docIdy = 0
+          for (let i = 0; i < z.toc.length; i++) {
+            const ze = z.toc[i]
+            if (ze.level === '1') {
+              ze.docIdx = docIdx++
+              docIdy = 0
+              nwtoc.push(ze)
+            }
+
+            if (ze.level === '2') {
+              ze.docIdx = `${docIdx}-${docIdy++}`
+              nwtoc.push(ze)
+            }
+            // if (ze.level === '2') {
+            //   if (nwtoc[nwtoc.length - 1].children) {
+            //     nwtoc[nwtoc.length - 1].children.push(ze)
+            //   } else {
+            //     nwtoc[nwtoc.length - 1].children = [ze]
+            //   }
+            // }
+          }
+
+          console.log(nwtoc)
+          vtoc.value = nwtoc
 
           const pattern = /\[:\w+\]/gi
 
@@ -57,11 +85,13 @@ export default defineComponent({
             const [md] = document.getElementsByClassName('markdown-body')
             if (!md) return
             const mdc = md.children
-            let idx = 0
             for (const el of mdc) {
               if (el.tagName === 'H1') {
-                vtoc.value[idx].offsetTop = el.offsetTop
-                idx++
+                console.log(el.innerText)
+                const hit = vtoc.value.findIndex((el2) => {
+                  return uncode(el2.content) === el.innerText
+                })
+                vtoc.value[hit].offsetTop = el.offsetTop
               }
             }
           }, 1000)
@@ -116,6 +146,7 @@ export default defineComponent({
                 </div>
               )
             }
+
             return (
               <div
                 onClick={() => {
@@ -123,7 +154,7 @@ export default defineComponent({
                 }}
                 className="lv1"
               >
-                {idx + 1}, {uncode(el.content)}
+                {el.docIdx + 1}, {uncode(el.content)}
               </div>
             )
           })}
