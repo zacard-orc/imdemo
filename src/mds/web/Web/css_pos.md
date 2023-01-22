@@ -60,9 +60,6 @@
 <iframe src="/public/p5demo/p5_0006.html"></iframe>
 
 # 叠加使用trans和pos，位置被保留
-## b
-## c
-## zzz
 ```css
 .abc {
       width: 300px;
@@ -108,7 +105,6 @@ block 填充坑位
 
 
 # pos变成absoulte，位置被占
-## a
 位置被填充，无法占位了  
 无论是否能设置float   
 ```css

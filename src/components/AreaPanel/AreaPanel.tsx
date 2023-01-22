@@ -53,7 +53,7 @@ export default defineComponent({
             }
 
             if (ze.level === '2') {
-              ze.docIdx = `${docIdx}-${docIdy++}`
+              ze.docIdx = `${docIdx - 1}-${docIdy++}`
               nwtoc.push(ze)
             }
             // if (ze.level === '2') {
@@ -85,11 +85,18 @@ export default defineComponent({
             const [md] = document.getElementsByClassName('markdown-body')
             if (!md) return
             const mdc = md.children
+            let hit_lv1 = 0
             for (const el of mdc) {
               if (el.tagName === 'H1') {
+                const hit = vtoc.value.findIndex((el2) => uncode(el2.content) === el.innerText)
+                vtoc.value[hit].offsetTop = el.offsetTop
+                hit_lv1 = vtoc.value[hit].docIdx
+              }
+
+              if (el.tagName === 'H2') {
                 console.log(el.innerText)
                 const hit = vtoc.value.findIndex((el2) => {
-                  return uncode(el2.content) === el.innerText
+                  return uncode(el2.content) === el.innerText && el2.level === '2' && el2.docIdx.startsWith(`${hit_lv1}-`)
                 })
                 vtoc.value[hit].offsetTop = el.offsetTop
               }
@@ -137,6 +144,7 @@ export default defineComponent({
             if (el.level === '2') {
               return (
                 <div
+                  data-idx={`lv2_${el.docIdx}`}
                   onClick={() => {
                     navScroll(el)
                   }}
@@ -149,6 +157,7 @@ export default defineComponent({
 
             return (
               <div
+                data-idx={`lv1_${el.docIdx}`}
                 onClick={() => {
                   navScroll(el)
                 }}
