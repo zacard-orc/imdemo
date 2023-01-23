@@ -52,3 +52,12 @@ Spring5+Java11+Idea2021.3.3
 
 
 
+# 版本对应关系
+```text
+Spring Framework 6.0.x：JDK 17-21（预期）
+Spring Framework 5.3.x：JDK 8-19（预期）
+Spring 框架 5.2.x：JDK 8-15
+Spring 框架 5.1.x：JDK 8-12
+Spring 框架 5.0.x：JDK 8-10
+Spring Framework 4.3.x：JDK 6-8
+```

@@ -70,6 +70,8 @@ export default defineComponent({
         prev[el.name_meta] = true //true-放开，false-折叠
         return prev
       }, {})
+
+      store.commit('codeLang', z.toUpperCase())
     })
 
     const { path, lang } = useRouteParam()
@@ -106,7 +108,7 @@ export default defineComponent({
     }
 
     const onClickTopic = (v: IMenu, parent: IMenu) => {
-      let hitlang = store.state.codeLang.toLowerCase()
+      const hitlang = store.state.codeLang.toLowerCase()
       // const z = location.href.split('/')[4].split('-')[1]
       // if (hitlang !== z) {
       //   hitlang = z
