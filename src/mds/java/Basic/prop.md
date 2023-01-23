@@ -127,6 +127,44 @@ public class HelloController {
     return "Hello World";
   }
 }
+```
 
+## @Autowired + @Value
+绑定类
+```java
+package com.abc;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+
+@Component
+@ConfigurationProperties(prefix = "mycar")
+public class House {
+  private String site;
+
+  @Value("${mycar.area}")
+  private String area;
+
+  public String getSite() {
+    return site;
+  }
+
+  public void setSite(String nw) {
+    this.site = nw;
+  }
+
+  public String showArea(){
+    return this.area;
+  }
+}
+```
+
+使用类
+```java
+@Autowired
+private House house;
+
+System.out.println(house.showArea());
 
 ```

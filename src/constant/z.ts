@@ -80,7 +80,21 @@ export const K_ENTRY_JAVA: IMenu[] = [
       { level: 2, name_zh: 'Spring5+Java1.8', name_en: 'spring5+java1.8', name_meta: 'spring5_8', desc: 'spring5 java1.8 idea' },
       { level: 2, name_zh: 'Spring5+Java11', name_en: 'spring5+java11', name_meta: 'spring5_11', desc: 'spring5 java11 idea' },
       { level: 2, name_zh: 'Maven3安装', name_en: 'maven3', name_meta: 'maven3', desc: 'maven3安装' },
-      { level: 2, name_zh: '环境配置properties', name_en: 'properties', name_meta: 'prop', desc: 'application.properties' },
+      {
+        level: 2,
+        name_zh: '环境配置properties',
+        name_en: 'properties',
+        name_meta: 'prop',
+        desc: 'application.properties @value @autowired',
+      },
+      { level: 2, name_zh: 'curl使用', name_en: 'curl', name_meta: 'curl', desc: 'curl post get head json' },
+      {
+        level: 2,
+        name_zh: 'Spring控制器',
+        name_en: 'spring_controller',
+        name_meta: 'spring_controller',
+        desc: 'url controller json get post',
+      },
     ],
   },
 ]
