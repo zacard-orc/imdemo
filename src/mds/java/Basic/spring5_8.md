@@ -186,3 +186,63 @@ public class ChapterApplicationTests {
 
 }
 ```
+
+# Docker
+## 修改pom版本
+```xml
+    <groupId>wiki.imdemo</groupId>
+    <artifactId>swg</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+```
+
+## Dockerfile
+```dockerfile
+FROM openjdk:8-jdk-slim
+LABEL maintainer=linly
+
+COPY target/*.jar /main.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","/main.jar"]
+```
+
+## Build
+```shell
+mvn install
+```
+
+```shell
+$ tree ./target -L 2
+./target
+├── classes
+│   ├── application.properties
+│   └── com
+├── generated-sources
+│   └── annotations
+├── maven-archiver
+│   └── pom.properties
+├── maven-status
+│   └── maven-compiler-plugin
+├── swg-0.0.1-SNAPSHOT.jar
+├── swg-0.0.1-SNAPSHOT.jar.original
+└── test-classes
+    └── application.properties
+```
+
+## Start
+```shell
+docker build -t java-test:v1.0 -f Dockerfile .
+docker images
+docker run -d -p 8080:8080 java-test:v1.0
+```
+
+## Check
+```text
+$ docker ps -a
+CONTAINER ID   IMAGE            COMMAND                  CREATED          STATUS          PORTS                    NAMES
+220f60f11dec   java-test:v1.0   "java -jar /main.jar"    55 seconds ago   Up 53 seconds   0.0.0.0:8080->8080/tcp   competent_yonath
+4b1cc0daed67   redis            "docker-entrypoint.s…"   12 days ago      Up 7 days       0.0.0.0:6380->6379/tcp   redis
+
+docker stop 220f60f11dec
+docker start 220f60f11dec
+```

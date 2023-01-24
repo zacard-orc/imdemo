@@ -3,6 +3,11 @@
 https://github.com/SpringForAll/spring-boot-starter-swagger
 ```
 
+# url
+```text
+http://localhost:8080/swagger-ui/index.html
+```
+
 # pom依赖 - 全
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
