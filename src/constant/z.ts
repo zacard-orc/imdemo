@@ -95,6 +95,13 @@ export const K_ENTRY_JAVA: IMenu[] = [
         name_meta: 'spring_controller',
         desc: 'url controller json get post',
       },
+      {
+        level: 2,
+        name_zh: 'SpringSwagger',
+        name_en: 'spring_swagger',
+        name_meta: 'spring_swagger',
+        desc: 'spring swagger markdown url',
+      },
     ],
   },
 ]
