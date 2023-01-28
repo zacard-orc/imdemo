@@ -24,6 +24,7 @@ export const K_ENTRY_WEB: IMenu[] = [
       { level: 2, name_zh: '浮动float', name_en: 'float', name_meta: 'css_float', desc: 'float 浮动 清除浮动' },
       { level: 2, name_zh: 'dnd拖动', name_en: 'dnd_h5_drag', name_meta: 'basic_dnd', desc: 'dnd h5 draggable 拖动' },
       { level: 2, name_zh: 'Svg', name_en: 'svg', name_meta: 'basic_svg', desc: 'svg路径 path clip' },
+      { level: 2, name_zh: 'Grid', name_en: 'grid', name_meta: 'basic_grid', desc: 'grid gap' },
     ],
   },
   {
@@ -77,7 +78,13 @@ export const K_ENTRY_JAVA: IMenu[] = [
     name_zh: '基础',
     name_meta: 'Basic',
     children: [
-      { level: 2, name_zh: 'Spring5+Java1.8', name_en: 'spring5+java1.8', name_meta: 'spring5_8', desc: 'spring5 java1.8 idea' },
+      {
+        level: 2,
+        name_zh: 'Spring5+Java1.8',
+        name_en: 'spring5+java1.8',
+        name_meta: 'spring5_8',
+        desc: 'spring5 java1.8 idea docker dockerfile',
+      },
       { level: 2, name_zh: 'Spring5+Java11', name_en: 'spring5+java11', name_meta: 'spring5_11', desc: 'spring5 java11 idea' },
       { level: 2, name_zh: 'Maven3安装', name_en: 'maven3', name_meta: 'maven3', desc: 'maven3安装' },
       {
@@ -101,6 +108,13 @@ export const K_ENTRY_JAVA: IMenu[] = [
         name_en: 'spring_swagger',
         name_meta: 'spring_swagger',
         desc: 'spring swagger markdown url',
+      },
+      {
+        level: 2,
+        name_zh: '语法糖',
+        name_en: 'sugar',
+        name_meta: 'sugar',
+        desc: 'spring sugar final syntex grammar 语法 类',
       },
     ],
   },
