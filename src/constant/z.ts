@@ -25,6 +25,7 @@ export const K_ENTRY_WEB: IMenu[] = [
       { level: 2, name_zh: 'dnd拖动', name_en: 'dnd_h5_drag', name_meta: 'basic_dnd', desc: 'dnd h5 draggable 拖动' },
       { level: 2, name_zh: 'Svg', name_en: 'svg', name_meta: 'basic_svg', desc: 'svg路径 path clip' },
       { level: 2, name_zh: 'Grid', name_en: 'grid', name_meta: 'basic_grid', desc: 'grid gap' },
+      { level: 2, name_zh: 'H5 Size', name_en: 'h5 size', name_meta: 'css_h5size', desc: 'h5 viewport vw rem px' },
     ],
   },
   {
