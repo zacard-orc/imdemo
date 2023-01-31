@@ -117,6 +117,13 @@ export const K_ENTRY_JAVA: IMenu[] = [
         name_meta: 'sugar',
         desc: 'spring sugar final syntex grammar 语法 类',
       },
+      {
+        level: 2,
+        name_zh: '注解',
+        name_en: 'annotation',
+        name_meta: 'ant',
+        desc: 'annotation 注解 反射 @',
+      },
     ],
   },
 ]

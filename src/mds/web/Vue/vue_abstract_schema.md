@@ -147,3 +147,48 @@ export default {
 </style>
 
 ```
+
+# 指令
+## 基础
+```js
+import Vue from 'vue'
+Vue.directive('zexp', {
+  getBookList() {
+    console.log('1')
+  },
+  submitOrder() {
+    console.log('2')
+  },
+  bind: function (el, bind) {
+    console.log(el)
+    console.log(bind)
+    // 只绑定一次
+    // const { resize, createElement } = bind.def;
+    // 聚焦元素
+    // ['resizeTR', 'resizeBR', 'resizeTL', 'resizeBL'].forEach((name) => createElement(name, el, resize, bind))
+  },
+})
+```
+
+```vue
+<div v-zexp="{ foo: 'bar' }">体验v-zexp</div>
+```
+
+## 对象展示
+```text
+bind: function (el, bind) {...}
+
+参数解析
+el: 浏览器的原生dom对象
+bind: {
+   value: object // { foo: 'bar' }
+   rawName: string // v-zexp,
+   name: string // zexp
+   expression: string // { foo: 'bar' }
+   def: {
+     bind: function
+     getBookList: function // 自定义
+     submitOrder: function // 自定义
+   }
+}
+```

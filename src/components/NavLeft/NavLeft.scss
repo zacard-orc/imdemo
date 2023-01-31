@@ -27,7 +27,8 @@
       }
       > .body {
         transition: height 0.3s ease-out;
-        overflow-y: hidden;
+        overflow-y: scroll;
+        max-height: 200px;
       }
     }
 

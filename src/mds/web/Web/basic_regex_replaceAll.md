@@ -102,3 +102,66 @@ reg81 name:wangfei true
 reg82 name:wangfei true
 reg82 name:wangfei false
 ```
+
+# 双向绑定，过滤字母+数字
+```vue
+<template>
+  <div>
+    <div>input re😊</div>
+    <label>
+      <input v-model="abcd.bat" type="text" placeholder="测试双绑" @input="baa" />
+    </label>
+    <div @click="zz">zz</div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'InputRe',
+  props: {},
+  data() {
+    return {
+      abcd: {
+        bat: '',
+      },
+    }
+  },
+  create() {
+    // console.log(this.zbz)
+  },
+  watch: {
+    abcd: {
+      handle: function (n, o) {
+        console.log(n)
+      },
+      deep: true,
+      immediate: true,
+    },
+    'abcd.bat': function (n) {
+      const reg = /[a-zA-Z\d]/g //匹配任意字母
+      const t = n.match(reg)
+      if (t && t.length > 0) {
+        this.abcd.bat = t.join('')
+      } else {
+        this.abcd.bat = ''
+      }
+    },
+  },
+  mounted() {
+    console.log('mounted')
+  },
+  methods: {
+    zz(e) {
+      console.log(this.$parent)
+      // console.log(this.abcd)
+    },
+    baa(e) {
+      // console.log(e.target.value)
+    },
+  },
+}
+</script>
+
+<style scoped lang="scss"></style>
+
+```

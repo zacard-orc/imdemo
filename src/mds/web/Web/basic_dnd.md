@@ -334,7 +334,7 @@
 
     /**
      *time/author：2019/5/9 "mouyao"
-     *desc:当鼠标开始华东的时候，根据鼠标的移动方向去调整他的X，Y坐标和长宽
+     *desc:当鼠标开始滑动的时候，根据鼠标的移动方向去调整他的X，Y坐标和长宽
      */
     document.onmousemove = function(e) {
       e = e || event; //是要是使用原生js给我们提供的e回调参数，这存储了很多有用的信息
@@ -393,4 +393,195 @@
     }
 </style>
 </html>
+```
+
+# vue指令+拉伸
+```text
+思路：
+1，绑定时创建容器的四角元素
+2，四角元素绑定mousedown
+3，mousedown时，监听document mousemove/mouseup
+4，根据document mousemove的反馈，更新容器的w,h
+5，根据document mouseup的反馈，清空监听函数
+
+```
+```javascript
+import Vue from 'vue'
+Vue.directive('stretch', {
+  // 当被绑定的元素插入到 DOM 中时……
+  // parentDom, createDom, name, bind
+  // name = 'resizeTR', 'resizeBR', 'resizeTL', 'resizeBL'
+  // bind = el raw bind
+  resize (oParent, handle, type, bind) {
+    handle.onmousedown = function (event) {
+      const screenX = event.clientX - handle.offsetLeft  //点击点离屏幕左边的距离
+      const screenY = event.clientY - handle.offsetTop //点击点离屏幕上边的距离
+      const parentHeight = oParent.offsetHeight
+      const parentWidth = oParent.offsetWidth
+      const parentTop = oParent.offsetTop
+      const parentLeft = oParent.offsetLeft
+
+      const style = window.getComputedStyle(oParent)
+      const getCssNumber = (type) => {
+        return parseFloat(style[type])
+      }
+
+      if (getCssNumber('marginTop')) {
+        oParent.style.top = style.marginTop
+        oParent.style.marginTop = 0
+      }
+
+      if (getCssNumber('marginLeft')) {
+        oParent.style.left = style.marginLeft
+        oParent.style.marginLeft = 0
+      }
+      document.onmousemove = function (event) {
+
+        const moveX = event.clientX - screenX //x轴移动的距离
+        const moveY = event.clientY - screenY //Y轴移动的距离
+        const maxWidth = document.documentElement.clientWidth - 100 //设置拉伸最大宽度
+        let minW, minH
+        console.log(bind)
+        if (bind?.value?.minWidth) {
+          minW = bind?.value?.minWidth  //设置拉伸最小宽度
+        } else {
+          minW = 320  //设置拉伸最小宽度
+        }
+        if (bind?.value?.minHeight) {
+          minH = bind?.value?.minHeight //设置拉伸最小高度
+        } else {
+          minH = 80//设置拉伸最小高度
+        }
+
+        console.log(minW, minH)
+
+
+        const leftPosition = moveX < 0 ? parentLeft - Math.abs(moveX) : parentLeft + Math.abs(moveX)  //left 的值
+        const topPosition = moveY < 0 ? parentTop - Math.abs(moveY) : parentTop + Math.abs(moveY)
+        switch (type) {
+          case 'resizeTR': {
+            if (moveX > maxWidth) {
+              oParent.style.width = `${maxWidth}px`
+            } else {
+              oParent.style.width = `${moveX < minW ? minW
+                : moveX}px`
+            }
+            const height = parentHeight + Math.abs(moveY) < minH ? minH : parentHeight + Math.abs(moveY)
+            const minHeight = parentHeight - moveY < minH ? minH : parentHeight - moveY
+            oParent.style.height = `${moveY < 0 ? height : minHeight}px`
+            if (minHeight > minH) {
+              console.log(parentTop, Math.abs(moveY))
+              oParent.style.top = `${topPosition}px`
+            }
+            break;
+          }
+
+          case 'resizeBR': {
+            if (moveX > maxWidth) {
+              oParent.style.width = `${maxWidth}px`
+            } else {
+              oParent.style.width = `${moveX < minW ? minW
+                : moveX}px`
+            }
+            oParent.style.height = `${moveY < minH ? minH : moveY}px`
+            break;
+          }
+
+          case 'resizeTL': {
+            console.log(moveX)
+            if (moveX > maxWidth) {
+              oParent.style.width = `${maxWidth}px`
+            } else {
+
+              oParent.style.width = `${parentWidth - moveX < minW ? minW
+                : parentWidth - moveX}px`
+              if (parentWidth - moveX >= minW) {
+                oParent.style.left = `${leftPosition}px`
+              }
+            }
+            const minHeight = parentHeight - moveY < minH ? minH : parentHeight - moveY
+            oParent.style.height = `${minHeight}px`
+            if (minHeight > minH) {
+              oParent.style.top = `${topPosition}px`
+            }
+            break;
+          }
+
+          case 'resizeBL': {
+            const minWidth = parentWidth - moveX < minW ? minW : parentWidth - moveX
+
+            if (parentWidth >= minW && moveX < 0) {
+              oParent.style.width = `${minWidth}px`
+              if (minWidth > minW) {
+                oParent.style.left = `${leftPosition}px`
+              }
+
+            }
+            if (parentWidth >= minW && moveX > 0) {
+              oParent.style.width = `${minWidth}px`
+              if (minWidth > minW) {
+                oParent.style.left = `${leftPosition}px`
+              }
+            }
+            oParent.style.height = `${moveY < minH ? minH : moveY}px`
+          }
+        }
+
+        return false
+      }
+      document.onmouseup = function () {
+        document.onmousemove = null
+        document.onmouseup = null
+      }
+      return false
+    }
+  },
+  createElement (name, parentDom, resizeFunction, bind) {
+
+    const createDom = document.createElement('div');
+    createDom.classList.add(name);
+    if (bind?.value?.className) {
+      const { className } = bind.value;
+      const insideDom = parentDom.getElementsByClassName(className)[0];
+      insideDom.classList.add('kfang-scale-warp');
+      insideDom.appendChild(createDom);
+      resizeFunction(insideDom, createDom, name, bind)
+    } else {
+      parentDom.classList.add('kfang-scale-warp');
+      parentDom.appendChild(createDom);
+      resizeFunction(parentDom, createDom, name, bind)
+    }
+
+
+  },
+  bind: function (el, bind) {
+    // 只绑定一次
+    const { resize, createElement } = bind.def;
+    // 聚焦元素
+    ['resizeTR', 'resizeBR', 'resizeTL', 'resizeBL'].forEach((name) => createElement(name, el, resize, bind))
+  }
+})
+```
+
+使用
+```vue
+<el-dialog
+      title="外层 Dialog"
+      :visible.sync="outerVisible"
+      v-stretch="{ className: 'el-dialog', minWidth: 300, minHeight: 400 }"
+    >
+      <el-dialog
+        width="30%"
+        title="内层 Dialog"
+        :visible.sync="innerVisible"
+        append-to-body
+      >
+      </el-dialog>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="outerVisible = false">取 消</el-button>
+        <el-button type="primary" @click="innerVisible = true"
+          >打开内层 Dialog</el-button
+        >
+      </div>
+</el-dialog>
 ```

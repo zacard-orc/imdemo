@@ -67,3 +67,20 @@ http://127.0.0.1:8080/car/linly
 * Connection #0 to host 127.0.0.1 left intact
 {"a":1}%
 ```
+
+# 上传本地文件
+```shell
+echo "pub to afb"
+
+# envType token teamId
+
+afb_token=`cat ~/Documents/fbplain.txt|grep ${envType}|awk -F ' ' '{ if ($1 =="'${envType}'") print $2}'`
+afb_teamid=`cat ~/Documents/fbplain.txt|grep ${envType}|awk -F ' ' '{ if ($1 =="'${envType}'") print $3}'`
+
+curl -X POST -k "https://x.x.x.x:yyyy/api/apps/${afb_teamid}/upload" \
+-H "accept: application/json" \
+-H "apikey: ${afb_token}" \
+-H "content-type: multipart/form-data" \
+-F "file=@${project_path}/dist_${netType}/ios_${project_version}_${netType}_${envType}_${pkg_time}_${bnvc}_${shortbranch}.ipa"
+
+```
