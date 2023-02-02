@@ -192,3 +192,36 @@ bind: {
    }
 }
 ```
+
+# scss多尺寸适配
+## vue 语法
+```vue
+ <div
+    :style="{
+      '--abc': z,
+      '--abcV': 50,
+    }"
+  >
+</div>
+```
+
+## scss 语法
+```scss
+@function fun($w) {
+  @return calc(calc(#{$w} / var(--abcV)) * 1rem);
+}
+
+.z1 {
+  color: #000;
+  margin-top: calc(var(--abc) + 50px);
+  //width: calc(calc(100 / var(--abcV)) * 1rem);
+  width: fun(100);
+  @media screen and (min-width: 370px) and (max-width: 800px) {
+    width: fun(200);
+  }
+  @media screen and (min-width: 800px) {
+    width: fun(400);
+  }
+  border: 1px dashed grey;
+}
+```
