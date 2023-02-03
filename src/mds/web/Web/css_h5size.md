@@ -240,3 +240,19 @@ const domdpr = document.getElementById('hdpr')
   const hdrp = window.devicePixelRatio;
   domdpr.innerText='dpr: '+hdrp
 ```
+
+# ipad 横屏
+```text
+物理 768x1024 *注意不随横竖屏改变
+clientWidth 1024
+dpr 2
+```
+<img src="mds_sucai/Web/css_h5sizepad1.jpg" alt="001" width="500px"/>
+
+# ipad 竖屏
+```text
+物理 768x1024 *注意不随横竖屏改变
+clientWidth 768
+dpr 2
+```
+<img src="mds_sucai/Web/css_h5sizepad2.jpg" alt="001" width="500px"/>
