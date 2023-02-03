@@ -122,3 +122,24 @@
 ```
 
 <img src="mds_sucai/Web/css_background2.jpg" alt="001" width="500px"/>
+
+# 强行设置px会压缩变形
+```text
+除非能算的很精准
+```
+
+```css
+  .a1 {
+      display: inline-block;
+      width: 375px;
+      height: 400px;
+      border: 1px dashed grey;
+      background-position: 0 0;
+      background-image: url("./bgz_v.jpg");
+      /*background-size: 100% 200px;*/
+      background-size: 100% 300px;
+      background-repeat: no-repeat;
+      vertical-align: top;
+  }
+```
+<img src="mds_sucai/Web/css_background3.jpg" alt="001" width="500px"/>
