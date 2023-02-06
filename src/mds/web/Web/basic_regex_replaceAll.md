@@ -165,3 +165,13 @@ export default {
 <style scoped lang="scss"></style>
 
 ```
+
+# 测试是否限制英文数字
+```js
+const valAcct = (e: string)=>{
+    const reg = /^[a-zA-Z-_@\\.\d]+$/
+    return reg.test(e)
+      ? ''
+      : '请限输入英文，数字，@-_等符号'
+  }
+```
