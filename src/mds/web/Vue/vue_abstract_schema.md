@@ -225,3 +225,178 @@ bind: {
   border: 1px dashed grey;
 }
 ```
+
+# createApi
+```text
+资料
+https://v2.cn.vuejs.org/v2/guide/render-function.html
+https://github.com/cube-ui/vue-create-api
+https://stackoverflow.com/questions/51865152/vue-2-5-slots-slot-scope-encapsulate-a-library-component-into-a-custom-com
+
+```
+
+## 使用Slot传值
+
+消费方
+```vue
+<template>
+  <div class="hello">
+    <button @click="showHello">vcapi</button>
+  </div>
+</template>
+
+<script>
+import Vue from 'vue'
+
+import SonShow from './SonShow'
+
+export default {
+  name: 'HelloAdam',
+  components: {
+    // eslint-disable-next-line vue/no-unused-components
+    SonShow,
+  },
+  data() {
+    return {}
+  },
+  computed: {},
+  mounted() {
+    Vue.component('SonShow', SonShow)
+
+    this.showHello()
+    console.log(this)
+    this.rd()
+  },
+  methods: {
+    rd() {},
+    showHello() {
+      const instance = this.$createHelloApi(
+        {
+          $props: {
+            content: 'Layer 1 - HelloApi',
+          },
+          $events: {
+            click() {
+              console.log('Hello component clicked.')
+              instance.remove()
+            },
+          },
+        },
+        (h, ctx) => {
+          console.log('aaa', ctx)
+          return [
+            // h('SonShow', {
+            //   slot: 'other',
+            //   props: {
+            //     box: 38,
+            //     circle: 'Tom·Cruz',
+            //   },
+            //   on: {
+            //     ev_son(b) {
+            //       console.log('from sonshow', b)
+            //     },
+            //   },
+            // }),
+            h(
+              'p',
+              {
+                slot: 'other',
+              },
+              [
+                h(
+                  'p',
+                  {
+                    attrs: {
+                      id: 'foo',
+                    },
+                  },
+                  'bbb'
+                ),
+                h('p', {}, 'ccc'),
+              ]
+            ),
+          ]
+        }
+      )
+    },
+  },
+}
+// https://v2.cn.vuejs.org/v2/guide/render-function.html
+// https://github.com/cube-ui/vue-create-api
+// https://stackoverflow.com/questions/51865152/vue-2-5-slots-slot-scope-encapsulate-a-library-component-into-a-custom-com
+/* renderFn */
+</script>
+
+<style scoped></style>
+```
+
+挂载的容器
+```vue
+<template>
+  <div @click="clickHandler">
+    {{ content }}
+    <slot name="other"></slot>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+export default {
+  name: 'HelloApi',
+  props: {
+    content: {
+      type: String,
+      default: 'Hello'
+    }
+  },
+  data(){
+    return {
+      age: 18,
+      frname: 'Tom·Cruz'
+    }
+  },
+  methods: {
+    clickHandler(e) {
+      this.$emit('click', e)
+    }
+  }
+}
+</script>
+```
+
+放入挂载容器里的组件
+```vue
+<template>
+  <div>
+    <p>SonShow</p>
+    <p>{{ box }}</p>
+    <p>{{ circle }}</p>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+export default {
+  name: 'SonShow',
+  props: {
+    box: {
+      type: Number,
+      default: -1,
+    },
+    circle: {
+      type: String,
+      default: 'String'
+    },
+  },
+  data(){
+    return {
+    }
+  },
+  mounted() {
+    console.log(this)
+    this.$emit('ev_son','zzzz')
+  },
+  methods: {
+
+  }
+}
+</script>
+```
