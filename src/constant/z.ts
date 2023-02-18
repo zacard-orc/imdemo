@@ -63,7 +63,10 @@ export const K_ENTRY_WEB: IMenu[] = [
     name_en: 'Node',
     name_zh: 'Node',
     name_meta: 'Node',
-    children: [{ level: 2, name_zh: 'sequelize', name_en: 'sequelize', name_meta: 'sequelize_use', desc: 'sequelize 使用' }],
+    children: [
+      { level: 2, name_zh: 'sequelize', name_en: 'sequelize', name_meta: 'sequelize_use', desc: 'sequelize 使用' },
+      { level: 2, name_zh: 'koa', name_en: 'koa', name_meta: 'koa', desc: 'koa router cors bodyparser 使用' },
+    ],
   },
 ]
 

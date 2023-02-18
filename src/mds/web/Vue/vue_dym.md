@@ -61,7 +61,7 @@ new Vue({
 
 ```
 
-# sfc - 组合开启runtime compile
+# sfc1 - 组合开启runtime compile
 ```text
 https://cli.vuejs.org/config/#runtimecompiler
 https://github.com/vuejs/vue-cli/issues/2754
@@ -177,6 +177,54 @@ export default {
 <script>
 export default {
   props: ["msg"],
+};
+</script>
+```
+
+# sfc2 - 组合开启runtime compile
+## [sfc] App.vue
+```vue
+<template>
+  <div id="app">
+    These links are rendered dynamically:
+    <br />
+    <!-- Global Components -->
+    <EmComponent msg="zzzz"/>
+  </div>
+</template>
+
+<script>
+import EmComponent from "./components/EmComponent";
+
+export default {
+  name: "App",
+  components: {
+    EmComponent
+  },
+  data() {
+    return {
+    };
+  },
+};
+</script>
+```
+
+## [render] EmComponent.vue
+```vue
+<script>
+export default {
+  props: ["msg"],
+ data(){
+  return {
+     message: 'Hello Vue!',
+  }
+  },
+  render(h) {
+    return h(
+      'div',   // 标签名称
+      this.msg+'/'+this.message, // 子节点数组
+    );
+  },
 };
 </script>
 ```
