@@ -7,6 +7,13 @@ export const K_ENTRY_WEB: IMenu[] = [
     name_zh: 'Web',
     name_meta: 'Web',
     children: [
+      {
+        level: 2,
+        name_zh: '浏览器适配',
+        name_en: 'broswer umd esm',
+        name_meta: 'browser',
+        desc: 'cjs amd umd iife debug lighthouse',
+      },
       { level: 2, name_zh: 'Css位置', name_en: 'css position', name_meta: 'css_pos', desc: 'position relative absolute float' },
       { level: 2, name_zh: 'Css滤镜', name_en: 'css_filter', name_meta: 'css_filter', desc: '滤镜 filter blur grayscale' },
       {

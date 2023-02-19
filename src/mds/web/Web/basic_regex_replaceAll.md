@@ -175,3 +175,16 @@ const valAcct = (e: string)=>{
       : '请限输入英文，数字，@-_等符号'
   }
 ```
+
+# 测试文件名归属扩展分类
+```text
+'bb.jpeg'.match(/(jpe?g|png|svg|gif|bmp)/g)
+'bb.jpeg'.match(/pdf$/g)
+'bb.jpeg'.match(/txt$/g)
+'bb.jpeg'.match(/xlsx?$/g)
+'bb.jpeg'.match(/docx?$/g)
+'bb.jpeg'.match(/(zip|rar|7z|tar|gz)$/g)
+'bb.jpeg'.match(/(mp4|mkv|avi)$/g)
+
+return null或者Object[]
+```
