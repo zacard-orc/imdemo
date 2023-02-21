@@ -38,3 +38,26 @@ app.listen(3000);
 console.log("server started at http:localhost:3000");
 
 ```
+
+# Static
+```shell
+pnpm install koa-static
+```
+```js
+const serve = require("koa-static");
+
+const app = new Koa();
+const router = new Router();
+
+
+app.use(async (ctx, next) => {
+    console.log('1=>', ctx.request.url, ctx.request.headers)
+    if(!ctx.request.headers.cookie || !ctx.request.headers.cookie.includes('bcd')){
+        throw new Error('not have cookie')
+    }
+    await next()
+    console.log('1<=')
+})
+app.use(serve(__dirname + '/public'))
+
+```
