@@ -585,3 +585,121 @@ Vue.directive('stretch', {
       </div>
 </el-dialog>
 ```
+
+Vue组件交替Touch事件
+```vue
+<template>
+  <div class="hello">
+    <div class="box" @touchstart="tgTouchStart" :style="boxPos"/>
+  </div>
+</template>
+
+<script>
+import {throttle} from 'lodash-es'
+
+export default {
+name: 'HelloCap',
+data() {
+return {
+boxPos: {
+left: 0,
+top: 0
+}
+}
+},
+methods: {
+_getXY(e) {
+if (!e.targetTouches || e.targetTouches.length <= 0) {
+return null
+}
+const [t] = e.targetTouches
+return {
+x: t.clientX,
+y: t.clientY
+}
+},
+_getOrigin(e) {
+if (!e.target) {
+return null
+}
+return {
+x: parseFloat(e.target.style.left.replace('px', '')),
+y: parseFloat(e.target.style.top.replace('px', ''))
+}
+},
+_getRectWH(e) {
+if (!e.target) {
+return {
+w: 0, y: 0
+}
+}
+return {
+w: e.target.offsetWidth,
+h: e.target.offsetHeight
+}
+},
+_cvXY(e,ref){
+if(e<0) return 0
+if(e>ref) return ref
+return e
+},
+tgTouchStart(e) {
+const {_getXY, _getOrigin, _getRectWH, _cvXY} = this
+const downXY = _getXY(e);
+const originXY = _getOrigin(e)
+const rectWH = _getRectWH(e)
+
+const touchMove = (mev) => {
+mev.preventDefault()
+mev.stopPropagation()
+
+const mevXY = _getXY(mev)
+
+const dtx = mevXY.x - downXY.x
+const dty = mevXY.y - downXY.y
+
+const dstX = originXY.x + dtx
+const dstY = originXY.y + dty
+
+
+this.boxPos = {
+left: _cvXY(dstX, document.documentElement.clientWidth-rectWH.w)+'px',
+top: _cvXY(dstY, document.documentElement.clientHeight-rectWH.h)+'px',
+}
+}
+
+// const enTouchMove = throttle(touchMove,300)
+
+const touchEnd = () => {
+document.removeEventListener("touchmove", touchMove);
+document.removeEventListener("touchend", touchEnd);
+}
+
+document.addEventListener('touchmove', touchMove)
+document.addEventListener('touchend', touchEnd)
+}
+},
+created() {
+},
+mounted() {
+}
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style lang="scss" scoped>
+.hello {
+
+}
+
+.box {
+width: 1rem;
+height: 1rem;
+position: absolute;
+background-color: lightgreen;
+//transition: all 0.1s ease-out;
+touch-action: none;
+}
+</style>
+
+```
