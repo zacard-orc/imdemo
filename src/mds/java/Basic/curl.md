@@ -69,6 +69,11 @@ http://127.0.0.1:8080/car/linly
 ```
 
 # 上传本地文件
+```text
+默认post
+使用multipart/form-data
+```
+## 单文件
 ```shell
 echo "pub to afb"
 
@@ -83,4 +88,22 @@ curl -X POST -k "https://x.x.x.x:yyyy/api/apps/${afb_teamid}/upload" \
 -H "content-type: multipart/form-data" \
 -F "file=@${project_path}/dist_${netType}/ios_${project_version}_${netType}_${envType}_${pkg_time}_${bnvc}_${shortbranch}.ipa"
 
+```
+
+## 多文件
+```shell
+curl  -k "http://localhost:3000/svc_upload" \
+-H "content-type: multipart/form-data" \
+-F "avatar=@/Users/macbookpro/Downloads/zip.svg" \
+-F "boop=@/Users/macbookpro/Downloads/video.svg" 
+```
+
+## 多文件+带参数
+```shell
+curl  -k "http://localhost:3000/svc_upload" \
+-H "content-type: multipart/form-data" \
+-F "avatar=@/Users/macbookpro/Downloads/zip.svg" \
+-F "boop=@/Users/macbookpro/Downloads/video.svg" \
+-F "id=777" \
+-F "name=mary" 
 ```

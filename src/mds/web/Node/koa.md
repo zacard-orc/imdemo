@@ -59,5 +59,36 @@ app.use(async (ctx, next) => {
     console.log('1<=')
 })
 app.use(serve(__dirname + '/public'))
+```
 
+# Multer上传
+```shell
+pnpm install @koa/multer multer
+```
+
+```js
+const multer = require('@koa/multer');
+const upload = multer();
+
+
+app.use(bodyParser());
+router.post(
+    '/svc_upload',
+    upload.fields([
+        {
+            name: 'avatar',
+            maxCount: 1
+        },
+        {
+            name: 'boop',
+            maxCount: 2
+        }
+    ]),
+    ctx => {
+        console.log('ctx.request.files', ctx.request.files);
+        console.log('ctx.files', ctx.files);
+        console.log('ctx.request.body', ctx.request.body);
+        ctx.body = 'done';
+    }
+);
 ```
