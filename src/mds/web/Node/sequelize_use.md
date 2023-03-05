@@ -109,3 +109,9 @@ const rtn = await szo.t_word_main.findAll({
                 group: SeqFn.fn('date_format', SeqFn.col('create_at'), '%m-%d')
             })
 ```
+
+# between
+```text
+const dr = ['2023-01-01','2023-02-28']
+mcond['create_at']={ $between:dr }
+```
