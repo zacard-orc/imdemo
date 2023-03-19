@@ -92,3 +92,59 @@ router.post(
     }
 );
 ```
+
+# ejs网页
+```text
+$ tree -L 2 -I node_modules  
+.
+├── README.md
+├── entry.js
+├── package-lock.json
+├── package.json
+└── views
+    └── index.ejs
+```
+
+
+```javascript
+const path = require('path')
+const Koa = require('koa')
+const ejs = require('koa-ejs')
+const Router = require('koa-router')
+const port = 6688
+
+const app = new Koa()
+
+app.listen(port)
+
+ejs(app, {
+    root: path.resolve(__dirname, './views'),
+    layout: false,
+    viewExt: 'ejs',
+    cache: false,
+    debug: false
+})
+
+app.use(async ctx => {
+    await ctx.render('index', {
+        title: 'hello wordl!'
+    })
+})
+
+console.log(`Started：http://localhost:${port}/`)
+```
+
+```ejs
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片压缩服务</title>
+</head>
+<body>
+<%=title %>
+</body>
+</html>
+```
