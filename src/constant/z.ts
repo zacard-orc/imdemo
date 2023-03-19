@@ -74,7 +74,20 @@ export const K_ENTRY_WEB: IMenu[] = [
     children: [
       { level: 2, name_zh: 'sequelize', name_en: 'sequelize', name_meta: 'sequelize_use', desc: 'sequelize 使用' },
       { level: 2, name_zh: 'koa', name_en: 'koa', name_meta: 'koa', desc: 'koa router cors bodyparser 使用' },
-      { level: 2, name_zh: 'webpack', name_en: 'webpack', name_meta: 'webpack', desc: 'webpack plugin sourcemap inline eval cheap' },
+      {
+        level: 2,
+        name_zh: 'webpack',
+        name_en: 'webpack',
+        name_meta: 'webpack',
+        desc: 'webpack plugin sourcemap inline eval cheap',
+      },
+      {
+        level: 2,
+        name_zh: 'git',
+        name_en: 'git',
+        name_meta: 'git',
+        desc: 'git track stage version reset',
+      },
     ],
   },
 ]
