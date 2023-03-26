@@ -183,3 +183,24 @@ fr.readAsBinaryString(el)
 ```js
 fr.readAsText(el)
 ```
+
+## Base64转文件@Nodejs
+```js
+const base64Data = req.rawBody.replace(/^data:image\/png;base64,/, "");
+
+require("fs").writeFile("out.png", base64Data, 'base64', function(err) {
+  console.log(err);
+});
+```
+
+## ArrayBuffer转文件@Nodejs
+```js
+// chunk is the Uint8Array object
+fs.appendFile(path, Buffer.from(chunk), function (err) {
+    if (err) {
+        fut.throw(err);
+    } else {
+        fut.return(chunk.length);
+    }
+});
+```
