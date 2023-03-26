@@ -57,7 +57,8 @@
 
 ```
 
-# 上传按钮隐藏
+# 上传
+## 上传隐藏
 ```html
 <p>
     <!--                <img src="./img/upload.png" id="cv-img" alt="upload">-->
@@ -112,6 +113,73 @@ $(document).ready(function() {
         });
     });
 })
+
+export const showname = () => {
+    const ipz = document.getElementById('z-upload');
+
+    if(ipz.files.length>5){
+        alert('最多选取5张，请重新确认')
+        return
+    }
+    const listori = $('#list-ori')
+    listori.html('')
+
+
+
+    for(let el of ipz.files){
+        console.log(el)
+        // 读取文件的arraybuffer
+        const fr = new FileReader()
+        fr.onloadend = function (){
+            console.log(fr.result)
+        }
+        fr.readAsArrayBuffer(el)
+        listori.append('<div class="dv-ori">'+el.name+'</div>')
+    }
+};
+
 ```
 
 <img src="mds_sucai/Web/browser_upload.jpg" alt="1" width="300px"/>
+
+## 读成ArrayBuffer
+```js
+export const showname = () => {
+    const ipz = document.getElementById('z-upload');
+
+    if(ipz.files.length>5){
+        alert('最多选取5张，请重新确认')
+        return
+    }
+    const listori = $('#list-ori')
+    listori.html('')
+
+
+
+    for(let el of ipz.files){
+        console.log(el)
+        // 读取文件的arraybuffer
+        const fr = new FileReader()
+        fr.onloadend = function (){
+            console.log(fr.result)
+        }
+        fr.readAsArrayBuffer(el)
+        listori.append('<div class="dv-ori">'+el.name+'</div>')
+    }
+};
+```
+
+## 读成Base64
+```js
+fr.readAsDataURL(el)
+```
+
+## 读成二进制字符串
+```js
+fr.readAsBinaryString(el)
+```
+
+## 读成Text
+```js
+fr.readAsText(el)
+```
