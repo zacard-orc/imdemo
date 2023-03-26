@@ -15,6 +15,7 @@ export const K_ENTRY_WEB: IMenu[] = [
         desc: 'cjs amd umd iife debug lighthouse',
       },
       { level: 2, name_zh: 'Css位置', name_en: 'css position', name_meta: 'css_pos', desc: 'position relative absolute float' },
+      { level: 2, name_zh: 'Css动画', name_en: 'css animation', name_meta: 'css_anm', desc: 'animation 动画' },
       { level: 2, name_zh: 'Css滤镜', name_en: 'css_filter', name_meta: 'css_filter', desc: '滤镜 filter blur grayscale' },
       {
         level: 2,
