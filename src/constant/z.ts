@@ -130,6 +130,7 @@ export const K_ENTRY_JAVA: IMenu[] = [
         desc: 'application.properties @value @autowired',
       },
       { level: 2, name_zh: 'curl使用', name_en: 'curl', name_meta: 'curl', desc: 'curl post get head json' },
+      { level: 2, name_zh: 'linux使用', name_en: 'linux', name_meta: 'linux', desc: 'curl exec find regex' },
       {
         level: 2,
         name_zh: 'Spring控制器',
