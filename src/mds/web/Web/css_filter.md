@@ -113,3 +113,69 @@ filter: hue-rotate(180deg);
 ```html
 filter: hue-rotate(180deg) sepia(60%);
 ```
+
+# 轮廓和阴影
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Title of the document</title>
+  <style>
+      img {
+          width: 200px;
+      }
+      .box-shadow {
+          float: left;
+          box-shadow: 7px 7px 7px #666666;
+      }
+      .drop-shadow {
+          float: right;
+      }
+      .drop-shadow img {
+          filter: drop-shadow(4px 4px 4px #666666);
+          -webkit-filter: drop-shadow(4px 4px 4px #666666);
+      }
+
+
+      .bs22 img{
+          filter:
+                  drop-shadow(1px 0 0 orangered)
+                  drop-shadow(2px 0 0 orangered)
+                  drop-shadow(2.5px 0 0 orangered)
+                  drop-shadow(0 1px 0 orangered)
+                  drop-shadow(0 2px 0 orangered)
+                  drop-shadow(0 2.5px 0 orangered)
+                  drop-shadow(-1px 0 0 orangered)
+                  drop-shadow(-2px 0 0 orangered)
+                  drop-shadow(-2.5px 0 0 orangered)
+                  drop-shadow(0 -1px 0 orangered)
+                  drop-shadow(0 -2px 0 orangered)
+                  drop-shadow(0 -2.5px 0 orangered)
+                  drop-shadow(4px 4px 4px #666666);
+
+      }
+
+  </style>
+</head>
+<body>
+<div class="images">
+  <div class="drop-shadow">
+    <p>Drop-shadow
+      <img src="https://images.vexels.com/media/users/3/157932/isolated/preview/951a617272553f49e75548e212ed947f-curved-check-mark-icon-by-vexels.png" />
+    </p>
+  </div>
+  <div class="drop-shadow">
+    <p>Drop-shadow
+      <img src="./drw1.png" />
+    </p>
+  </div>
+
+</div>
+<p class='bs22'>
+  <img src="./drw1.png" />
+</p>
+</body>
+</html>
+
+```
+<img src="mds_sucai/Web/css_filter_outline.jpg" alt="00x"/>
