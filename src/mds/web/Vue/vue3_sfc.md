@@ -151,6 +151,11 @@ import { ref } from 'vue'
 
 import emits_child_v3sfc from './emits_child_v3sfc'
 
+const props = defineProps({
+  title:String,
+  age:Number
+})
+
 const rsSubmit = (e) => {
   console.log(e)
   return 'rsa'

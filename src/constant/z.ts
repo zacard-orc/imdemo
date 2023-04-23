@@ -172,6 +172,7 @@ export const K_ENTRY_K8S: IMenu[] = [
     children: [
       { level: 2, name_zh: 'app转映像', name_en: 'docker template', name_meta: 'docker_template', desc: '抽成docker模版' },
       { level: 2, name_zh: '常用镜像', name_en: 'docker images', name_meta: 'docker_runimages', desc: '常用镜像运行' },
+      { level: 2, name_zh: 'shell', name_en: 'shell', name_meta: 'shell', desc: 'shell' },
     ],
   },
 ]

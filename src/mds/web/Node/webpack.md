@@ -217,3 +217,260 @@ module.exports = {
 </script>
 </html>
 ```
+
+
+# 获取依赖树
+```js
+//OkDeps.js
+class OkDeps {
+    constructor() {
+
+        // this.z =
+    }
+
+
+    beforeResolve(resolveData, callback) {
+
+        /*
+        {
+  contextInfo: { issuer: '', issuerLayer: null, compiler: undefined },
+  resolveOptions: {},
+  context: '/Users/macbookpro/Documents/mylab/vue3_wp5',
+  request: '/Users/macbookpro/Documents/mylab/vue3_wp5/src/car/main.js',
+  dependencies: [
+    EntryDependency {
+      _parentModule: undefined,
+      _parentDependenciesBlock: undefined,
+      weak: false,
+      optional: false,
+      _locSL: 0,
+      _locSC: 0,
+      _locEL: 0,
+      _locEC: 0,
+      _locI: undefined,
+      _locN: 'car',
+      _loc: [Object],
+      request: '/Users/macbookpro/Documents/mylab/vue3_wp5/src/car/main.js',
+      userRequest: '/Users/macbookpro/Documents/mylab/vue3_wp5/src/car/main.js',
+      range: undefined
+    }
+  ],
+         */
+        const {  request,contextInfo, context } = resolveData;
+        // console.log('bf -1 ', contextInfo && contextInfo.issuer)
+        // console.log('bf -2 ', request)
+        // console.log(resolveData)
+
+        // console.log('[bf]', contextInfo && contextInfo.issuer, '=>',request,'@',context )
+        // console.log('[bf]', contextInfo && contextInfo.issuer, '=>',request )
+
+        callback()
+    }
+
+
+
+
+    afterResolve(result, callback) {
+        const {  request,contextInfo, context } = result;
+        // console.log('[af]', contextInfo && contextInfo.issuer, '=>',request ,'@',context )
+        // console.log('[af]', contextInfo && contextInfo.issuer, '=>',request )
+
+        callback()
+    }
+
+    handleFinishModules  (modules, callback) {
+        // console.log('[FM]',modules)
+        Array.from(modules).forEach(el=>{
+
+            console.log('[FM]',el.userRequest)
+            // if(el.userRequest==='vue' || el.userRequest==='vuex'){
+            //     console.log('[FM]',el)
+            // }
+        })
+        callback()
+    }
+
+    reg(compiler){
+        console.log(Object.keys(compiler.options.entry))
+        compiler.hooks.normalModuleFactory.tap(
+            "OkDeps",
+            nmf => {
+
+                nmf.hooks.beforeResolve.tapAsync(
+                    "OkDeps",
+                    this.beforeResolve
+                );
+
+                nmf.hooks.afterResolve.tapAsync(
+                    "OkDeps",
+                    this.afterResolve
+                );
+            }
+        );
+
+        compiler.hooks.compilation.tap(
+            "OkDeps",
+            compilation => {
+
+                compilation.hooks.finishModules.tapAsync(
+                    "OkDeps",
+                    this.handleFinishModules
+                );
+            }
+        );
+    }
+
+    //插件入口
+    apply(compiler) {
+        this.reg(compiler);
+    }
+}
+module.exports = OkDeps;
+```
+
+
+# 获取生命周期细节
+```js
+
+//PrintHooksPlugin.js
+class PrintHooksPlugin {
+  constructor() {}
+  //打印编译器Hooks
+  printCompilerHooks(compiler) {
+    //打印编译对象
+    compiler.hooks.thisCompilation.tap("PrintHooksPlugin", (compilation) => {
+      this.printCompilationHooks(compilation);
+    });
+
+    //遍历compiler hooks
+    Object.keys(compiler.hooks).forEach((hookName) => {
+      compiler.hooks[hookName].tap("PrintHooksPlugin", (arg) => {
+        // console.log(`${hookName}`, hookName, arg);
+        console.log(new Date().toLocaleTimeString()+'.'+Date.now().toString().slice(-3),`compiler.hooks => ${hookName}`);
+      });
+    });
+  }
+
+  //打印编译（构建）Hooks
+  printCompilationHooks(compilation) {
+    let compilationHooks = compilation.hooks;
+
+    //这里添加一个正则对象，判断Hook结尾的
+    let reg = /Hook$/;
+    Object.keys(compilationHooks).forEach((hookName) => {
+      //获取hook函数名，判断以Hook结尾，并且不是log
+      let name = compilationHooks[hookName].constructor.name;
+      if (reg.test(name) && hookName !== "log") {
+        compilationHooks[hookName].tap("PrintHooksPlugin", (arg, b) => {
+          // console.log(`compilation ${hookName}`, arg);
+          console.log(new Date().toLocaleTimeString()+'.'+Date.now().toString().slice(-3), `compilation.hooks => ${hookName}`);
+
+          if(hookName==='statsPrinter'){
+            // console.log(arg, b)
+            arg.hooks.result._factory((a,b)=>{
+                console.log(a,b)
+            })
+          }
+        });
+      }
+    });
+  }
+
+  //插件入口
+  apply(compiler) {
+    console.log(compiler);
+    console.log(compiler.hooks.thisCompilation);
+    this.printCompilerHooks(compiler);
+  }
+}
+module.exports = PrintHooksPlugin;
+
+```
+
+
+# 对产物进行压缩
+```js
+// 自定义 webpack plugin.
+const { stat, writeFile } = require('fs/promises')
+const path = require('path')
+
+const Jz = require('jszip');
+const { RawSource } = require("webpack-sources");
+const sha256 = require('sha256-file');
+
+// const prSha256 = new Promise(resolve => {
+// })
+
+class DonePlugin{
+  constructor(params){
+  }
+  apply(compiler){
+    // compiler.hooks.done.tap('DonePlugin', (stats)=>{
+    compiler.hooks.afterDone.tap('DonePlugin', (stats)=>{
+      // console.log(Date.now(), '当前webpack同步编译完成~~~');
+      // const z1 = fs.existsSync(path.resolve(__dirname,'../../dist/logo.png'))
+      // const z2 = fs.existsSync(path.resolve(__dirname,'../../dist/manifest.json'))
+
+      // console.log(z1,z2)
+      // todo gzip
+      // todo 修改manifest
+      // todo 签名
+    });
+
+    // https://stackoverflow.com/questions/72652370/webpack-4-to-5-custom-plugin-replacing-compilation-assets-mutation-with-compil
+    compiler.hooks.emit.tapAsync('DonePlugin', (compilation, cb) => {
+      console.log(Date.now(),compiler.options.name, '压缩资源');
+
+      const zip = new Jz();
+      // console.log(compilation.assets)
+      for (let el in compilation.assets) {
+          const source = compilation.assets[el].source();
+          zip.file(el, source);
+      }
+      zip.generateAsync({type:"nodebuffer"})
+          .then((content) => {
+              compilation.assets[`HK_${compiler.options.name}.zip`] = new RawSource(content);
+              cb();
+          });
+    })
+
+    compiler.hooks.afterEmit.tapAsync('DonePlugin',   async (f, cb)=>{
+      console.log(Date.now(),compiler.options.name, '生成manifest');
+      const pf = compiler.options.output.path
+      const meta = []
+      let dfzip = null
+      for(let el of Array.from(f.emittedAssets)){
+        const fullp = path.resolve(pf,el)
+        const z = await stat(fullp)
+        const hs = sha256(fullp)
+        const o = {
+          name: el,
+          size: z.size,
+          bms: z.birthtimeMs, // utc
+          bm: z.birthtime,
+          hs
+        }
+        meta.push(o)
+        if(/HK_\w+\.zip$/.test(el)){
+          dfzip = o
+        }
+      }
+
+      const fo = {
+        list: meta,
+        zip: dfzip,
+        version: Date.now().toString()
+      }
+
+      console.log(dfzip)
+      await writeFile(path.resolve(pf,'manifest.json'),JSON.stringify(fo,null,2))
+      cb()
+
+    });
+
+
+  }
+}
+
+module.exports = DonePlugin;
+```
