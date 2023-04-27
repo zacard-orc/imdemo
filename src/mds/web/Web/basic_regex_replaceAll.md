@@ -188,3 +188,13 @@ const valAcct = (e: string)=>{
 
 return null或者Object[]
 ```
+
+
+# 测试是否双峰或者单峰命名
+```text
+const reg = /^[A-z][a-z]+([A-Z][a-z]+)+$/
+reg.test('Hello')
+reg.test('HelloWorld')
+reg.test('HelloWorldBoy')
+reg.test('Hello12344')
+```
