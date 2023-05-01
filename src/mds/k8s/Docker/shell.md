@@ -18,3 +18,10 @@ do
 done
 
 ```
+
+# windows重启
+```shell
+cd c:/xxx/zzz/xxx/ccc
+taskkill /f /im "nginx"
+start nginx
+```
