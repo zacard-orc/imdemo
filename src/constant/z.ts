@@ -54,6 +54,7 @@ export const K_ENTRY_WEB: IMenu[] = [
       { level: 2, name_zh: 'vue语法糖', name_en: 'vue json component', name_meta: 'vue_abstract_schema' },
       { level: 2, name_zh: 'vue动态组件', name_en: 'vue runcompile dynamic', name_meta: 'vue_dym' },
       { level: 2, name_zh: 'vue2测试工程', name_en: 'vue2 ava test runner', name_meta: 'vue2_test' },
+      { level: 2, name_zh: 'vue虚拟列表', name_en: 'vue virtual list虚拟列表', name_meta: 'vue_vlist' },
     ],
   },
   {
