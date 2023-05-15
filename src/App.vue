@@ -39,6 +39,40 @@ export default defineComponent({
       immediate: true,
     },
   },
+  mounted() {
+    const getImgUrl = (name: string, suffix = 'svg') => {
+      const v = new URL(`./imgs/${name}.${suffix}`, import.meta.url)
+      console.log(v)
+
+      return v.href
+    }
+
+    const getFileName = (el: string) => {
+      return el.split('/').pop()
+    }
+
+    const getStatusImgDict = () => {
+      //@ts-ignore
+      const modules = import.meta.glob(`./imgs/*.svg`)
+
+      Object.keys(modules).forEach((key: any) => {
+        console.log(key)
+        /*
+    ./imgs/excel.svg App.vue:52:16
+    ./imgs/pdf.svg App.vue:52:16
+    ./imgs/txt.svg App.vue:52:16
+    ./imgs/word.svg App.vue:52:16
+     */
+        const newKey = getFileName(key)
+        // modules[newKey] = modules[key];
+        modules[newKey] = getImgUrl(newKey || '')
+        // delete modules[key]
+      })
+      return modules
+    }
+
+    getStatusImgDict()
+  },
   methods: {},
 })
 </script>
