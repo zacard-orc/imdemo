@@ -56,6 +56,7 @@ export const K_ENTRY_WEB: IMenu[] = [
       { level: 2, name_zh: 'vue动态组件', name_en: 'vue runcompile dynamic', name_meta: 'vue_dym' },
       { level: 2, name_zh: 'vue2测试工程', name_en: 'vue2 ava test runner', name_meta: 'vue2_test' },
       { level: 2, name_zh: 'vue虚拟列表', name_en: 'vue virtual list虚拟列表', name_meta: 'vue_vlist' },
+      { level: 2, name_zh: 'vue3批量图片', name_en: 'vue3 批量 异步 加载图片 import.meta glob', name_meta: 'vue3_importmeta' },
     ],
   },
   {
