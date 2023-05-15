@@ -41,7 +41,9 @@ export default defineComponent({
   },
   mounted() {
     const getImgUrl = (name: string, suffix = 'svg') => {
-      const v = new URL(`./imgs/${name}.${suffix}`, import.meta.url)
+      const z = 'imgs'
+      const v = new URL(`./${z}/${name}.${suffix}`, import.meta.url)
+      // const v = new URL(`./imgs/${name}.${suffix}`, import.meta.url)
       console.log(v)
 
       return v.href
@@ -53,7 +55,8 @@ export default defineComponent({
 
     const getStatusImgDict = () => {
       //@ts-ignore
-      const modules = import.meta.glob(`./imgs/*.svg`)
+      // const modules = import.meta.glob(`./imgs/*.svg`)
+      const modules = {}
 
       Object.keys(modules).forEach((key: any) => {
         console.log(key)
